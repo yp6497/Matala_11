@@ -9,7 +9,9 @@
         android:roundIcon="@mipmap/ic_launcher_round"
         android:supportsRtl="true"
         android:theme="@style/Theme.Matala_11">
-        <activity android:name=".creditsActivity"></activity>
+        <activity android:name=".ActivityGradeInput"></activity>
+        <activity android:name=".ActivityDataDisplay" />
+        <activity android:name=".creditsActivity" />
         <activity android:name=".MainActivity">
             <intent-filter>
                 <action android:name="android.intent.action.MAIN" />

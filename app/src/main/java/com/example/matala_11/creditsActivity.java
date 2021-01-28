@@ -1,4 +1,4 @@
-package com.example.matala_11;
+ package com.example.matala_11;
 
 import androidx.appcompat.app.AppCompatActivity;
 
@@ -22,6 +22,9 @@ public class creditsActivity extends AppCompatActivity {
     }
 
 
+    /**
+     * description- creates menu.
+     */
     @Override
     public boolean onCreateOptionsMenu(Menu menu) {
 

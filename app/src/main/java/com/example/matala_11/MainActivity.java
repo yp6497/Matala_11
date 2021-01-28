@@ -2,6 +2,7 @@ package com.example.matala_11;
 
 import androidx.appcompat.app.AppCompatActivity;
 
+import android.content.ContentValues;
 import android.content.Context;
 import android.content.Intent;
 import android.database.sqlite.SQLiteDatabase;
@@ -12,6 +13,9 @@ import android.view.MenuItem;
 import android.widget.EditText;
 
 
+import static com.example.matala_11.MainActivity.Grades.GRADE;
+import static com.example.matala_11.MainActivity.Grades.SUBJECT;
+import static com.example.matala_11.MainActivity.Grades.TABLE_GRADES;
 import static com.example.matala_11.MainActivity.Users.ADDRESS;
 import static com.example.matala_11.MainActivity.Users.AVEIBALE;
 import static com.example.matala_11.MainActivity.Users.HOME_PHONE;
@@ -65,9 +69,13 @@ public class MainActivity extends AppCompatActivity {
         public static final String PARENT_NAME_2 = "ParentN2";
         public static final String PARENT_PHONE_1 = "ParentP1";
         public static final String PARENT_PHONE_2 = "ParentP2";
+    }
 
+    public class Grades {
 
-
+        public static final String TABLE_GRADES = "Grades";
+        public static final String SUBJECT = "Subject";
+        public static final String GRADE = "Grade";
     }
 
     public class HelperDB extends SQLiteOpenHelper {
@@ -100,6 +108,12 @@ public class MainActivity extends AppCompatActivity {
             strCreate+=");";
             db.execSQL(strCreate);
 
+            strCreate="CREATE TABLE "+ TABLE_GRADES;
+            strCreate+=" ("+KEY_ID+" INTEGER PRIMARY KEY,";
+            strCreate+=" "+SUBJECT+" TEXT,";
+            strCreate += " "+ GRADE+" INTEGER,";
+            db.execSQL(strCreate);
+
         }
 
         @Override
@@ -107,9 +121,17 @@ public class MainActivity extends AppCompatActivity {
 
             strDelete = "DROP TABLE IF EXISTS " + TABLE_USERS;
             db.execSQL(strDelete);
+            strDelete = "DROP TABLE IF EXISTS " + TABLE_GRADES;
+            db.execSQL(strDelete);
+
             onCreate(db);
         }
     }
+
+
+    /**
+     * description- creates menu.
+     */
 
     @Override
     public boolean onCreateOptionsMenu(Menu menu) {
@@ -126,6 +148,10 @@ public class MainActivity extends AppCompatActivity {
         String st = item.getTitle().toString();
         if (st.endsWith("Credits")) {
             Intent si = new Intent(this, creditsActivity.class);
+            startActivity(si);
+        }
+        if (st.endsWith("Grades")) {
+            Intent si = new Intent(this, ActivityGradeInput.class);
             startActivity(si);
         }
         return true;
