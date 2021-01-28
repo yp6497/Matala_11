@@ -123,7 +123,7 @@ public class MainActivity extends AppCompatActivity {
             db.execSQL(strDelete);
             strDelete = "DROP TABLE IF EXISTS " + TABLE_GRADES;
             db.execSQL(strDelete);
-
+             //
             onCreate(db);
         }
     }
