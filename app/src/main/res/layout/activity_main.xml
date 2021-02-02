@@ -28,106 +28,263 @@
                     android:layout_width="match_parent"
                     android:layout_height="52dp" />
 
-                <EditText
+                <LinearLayout
                     android:layout_width="match_parent"
-                    android:layout_height="wrap_content"
-                    android:ems="10"
-                    android:hint="Name"
-                    android:inputType="textPersonName" />
+                    android:layout_height="46dp"
+                    android:orientation="horizontal">
+
+                    <Space
+                        android:layout_width="176dp"
+                        android:layout_height="match_parent" />
+
+                    <EditText
+                        android:id="@+id/name"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:ems="10"
+                        android:hint="שם תלמיד"
+                        android:inputType="textPersonName" />
+
+                    <Space
+                        android:layout_width="80dp"
+                        android:layout_height="match_parent"
+                        android:layout_weight="1" />
+                </LinearLayout>
 
                 <Space
                     android:layout_width="match_parent"
                     android:layout_height="36dp" />
 
-                <EditText
+                <LinearLayout
                     android:layout_width="match_parent"
-                    android:layout_height="wrap_content"
-                    android:ems="10"
-                    android:inputType="textPersonName"
-                    android:text="Name" />
+                    android:layout_height="match_parent"
+                    android:orientation="horizontal">
+
+                    <Space
+                        android:layout_width="176dp"
+                        android:layout_height="match_parent" />
+
+                    <EditText
+                        android:id="@+id/studentP"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:ems="10"
+                        android:hint="טלפון התלמיד"
+                        android:inputType="textPersonName" />
+
+                    <Space
+                        android:layout_width="80dp"
+                        android:layout_height="match_parent"
+                        android:layout_weight="1" />
+                </LinearLayout>
 
                 <Space
                     android:layout_width="match_parent"
-                    android:layout_height="38dp" />
+                    android:layout_height="36dp" />
 
-                <EditText
+                <LinearLayout
                     android:layout_width="match_parent"
-                    android:layout_height="wrap_content"
-                    android:ems="10"
-                    android:inputType="textPersonName"
-                    android:text="Name" />
+                    android:layout_height="match_parent"
+                    android:orientation="horizontal">
+
+                    <Space
+                        android:layout_width="176dp"
+                        android:layout_height="match_parent" />
+
+                    <EditText
+                        android:id="@+id/parentName1"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:ems="10"
+                        android:hint="שם ההורה"
+                        android:inputType="textPersonName" />
+
+                    <Space
+                        android:layout_width="80dp"
+                        android:layout_height="wrap_content"
+                        android:layout_weight="1" />
+                </LinearLayout>
 
                 <Space
                     android:layout_width="match_parent"
                     android:layout_height="29dp" />
 
-                <EditText
+                <LinearLayout
                     android:layout_width="match_parent"
-                    android:layout_height="wrap_content"
-                    android:ems="10"
-                    android:inputType="textPersonName"
-                    android:text="Name" />
+                    android:layout_height="match_parent"
+                    android:orientation="horizontal">
 
-                <Space
-                    android:layout_width="match_parent"
-                    android:layout_height="33dp" />
+                    <Space
+                        android:layout_width="176dp"
+                        android:layout_height="wrap_content" />
 
-                <EditText
-                    android:layout_width="match_parent"
-                    android:layout_height="wrap_content"
-                    android:ems="10"
-                    android:inputType="textPersonName"
-                    android:text="Name" />
+                    <EditText
+                        android:id="@+id/parentP1"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:ems="10"
+                        android:hint="טלפון ההורה"
+                        android:inputType="textPersonName" />
 
-                <Space
-                    android:layout_width="match_parent"
-                    android:layout_height="35dp" />
-
-                <EditText
-                    android:layout_width="match_parent"
-                    android:layout_height="wrap_content"
-                    android:ems="10"
-                    android:inputType="textPersonName"
-                    android:text="Name" />
+                    <Space
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:layout_weight="1" />
+                </LinearLayout>
 
                 <Space
                     android:layout_width="match_parent"
                     android:layout_height="36dp" />
 
-                <EditText
+                <LinearLayout
                     android:layout_width="match_parent"
-                    android:layout_height="wrap_content"
-                    android:ems="10"
-                    android:inputType="textPersonName"
-                    android:text="Name" />
+                    android:layout_height="match_parent"
+                    android:orientation="horizontal">
+
+                    <Space
+                        android:layout_width="176dp"
+                        android:layout_height="wrap_content" />
+
+                    <EditText
+                        android:id="@+id/parentName2"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:ems="10"
+                        android:hint=" ההורה השני"
+                        android:inputType="textPersonName" />
+
+                    <Space
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:layout_weight="1" />
+
+                </LinearLayout>
 
                 <Space
                     android:layout_width="match_parent"
-                    android:layout_height="32dp" />
+                    android:layout_height="35dp" />
 
-                <EditText
+                <LinearLayout
                     android:layout_width="match_parent"
-                    android:layout_height="wrap_content"
-                    android:ems="10"
-                    android:inputType="textPersonName"
-                    android:text="Name" />
+                    android:layout_height="match_parent"
+                    android:orientation="horizontal">
+
+                    <Space
+                        android:layout_width="176dp"
+                        android:layout_height="wrap_content" />
+
+                    <EditText
+                        android:id="@+id/parentP2"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:ems="10"
+                        android:hint="טלפון ההורה השני"
+                        android:inputType="textPersonName" />
+
+                    <Space
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:layout_weight="1" />
+                </LinearLayout>
 
                 <Space
                     android:layout_width="match_parent"
-                    android:layout_height="38dp" />
+                    android:layout_height="36dp" />
 
-                <EditText
+                <LinearLayout
                     android:layout_width="match_parent"
-                    android:layout_height="wrap_content"
-                    android:ems="10"
-                    android:inputType="textPersonName"
-                    android:text="Name" />
+                    android:layout_height="match_parent"
+                    android:orientation="horizontal">
+
+                    <Space
+                        android:layout_width="176dp"
+                        android:layout_height="wrap_content" />
+
+                    <EditText
+                        android:id="@+id/address"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:ems="10"
+                        android:hint="כתובת"
+                        android:inputType="textPersonName" />
+
+                    <Space
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:layout_weight="1" />
+                </LinearLayout>
+
+                <Space
+                    android:layout_width="match_parent"
+                    android:layout_height="36dp" />
+
+                <LinearLayout
+                    android:layout_width="match_parent"
+                    android:layout_height="match_parent"
+                    android:orientation="horizontal">
+
+                    <Space
+                        android:layout_width="176dp"
+                        android:layout_height="wrap_content" />
+
+                    <EditText
+                        android:id="@+id/homeP"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:ems="10"
+                        android:hint="טלפון הבית"
+                        android:inputType="textPersonName" />
+
+                    <Space
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:layout_weight="1" />
+                </LinearLayout>
+
+                <Space
+                    android:layout_width="match_parent"
+                    android:layout_height="36dp" />
+
+                <LinearLayout
+                    android:layout_width="match_parent"
+                    android:layout_height="43dp"
+                    android:orientation="horizontal">
+
+                    <Space
+                        android:layout_width="76dp"
+                        android:layout_height="29dp" />
+
+                    <TextView
+                        android:id="@+id/textView"
+                        android:layout_width="198dp"
+                        android:layout_height="29dp"
+                        android:layout_weight="1"
+                        android:text="פעיל" />
+
+                    <Space
+                        android:layout_width="31dp"
+                        android:layout_height="match_parent"
+                        android:layout_weight="1" />
+
+                    <Switch
+                        android:id="@+id/sw"
+                        android:layout_width="147dp"
+                        android:layout_height="match_parent"
+                        android:onClick="active_or_not"
+                        android:layout_weight="1" />
+
+                    <Space
+                        android:layout_width="50dp"
+                        android:layout_height="match_parent"
+                        android:layout_weight="1" />
+                </LinearLayout>
+
             </LinearLayout>
         </ScrollView>
 
         <Space
             android:layout_width="match_parent"
-            android:layout_height="56dp" />
+            android:layout_height="57dp" />
 
         <LinearLayout
             android:layout_width="match_parent"
@@ -143,6 +300,7 @@
                 android:id="@+id/button2"
                 android:layout_width="8dp"
                 android:layout_height="wrap_content"
+                android:onClick="aprrov"
                 android:layout_weight="1"
                 android:text="אישור" />
 
