@@ -13,6 +13,8 @@ import android.view.MenuItem;
 import android.view.View;
 import android.widget.EditText;
 import android.widget.Switch;
+import android.widget.TextView;
+import android.widget.Toast;
 
 
 /**
@@ -27,6 +29,7 @@ public class MainActivity extends AppCompatActivity {
 
     EditText nameE, addressE, studentPE, homePE, parentName1E, parentName2E, parentP1E, parentP2E;
     String name, address, studentP,homeP, parentName1, parentName2, parentP1, parentP2;
+    TextView tv;
 
     SQLiteDatabase db;
     HelperDB hlp;
@@ -40,6 +43,7 @@ public class MainActivity extends AppCompatActivity {
         setContentView(R.layout.activity_main);
 
         sw = findViewById(R.id.sw);
+        tv = findViewById(R.id.tv);
         nameE= findViewById(R.id.name);
         studentPE= findViewById(R.id.studentP);
         parentName1E= findViewById(R.id.parentName1);
@@ -56,20 +60,36 @@ public class MainActivity extends AppCompatActivity {
     }
 
     /**
-     * description-
+     * description- kolet all the fields
      * @param view the view
      */
     public void aprrov(View view) {
 
-        name= nameE.getText().toString();
-        studentP= studentPE.getText().toString();
-        parentName1= parentName1E.getText().toString();
-        parentName2= parentName2E.getText().toString();
-        parentP1= parentP1E.getText().toString();
-        parentP2= parentP2E.getText().toString();
-        address= addressE.getText().toString();
-        homeP= homePE.getText().toString();
+        if(parentP1E==null || parentName1E==null || addressE==null || nameE==null || studentPE==null )
+            Toast.makeText(this, "please enter all the", Toast.LENGTH_SHORT).show();
 
+        else{
+            /*
+            name = nameE.getText().toString();
+            studentP = studentPE.getText().toString();
+            parentName1 = parentName1E.getText().toString();
+            parentName2 = parentName2E.getText().toString();
+            parentP1 = parentP1E.getText().toString();
+            parentP2 = parentP2E.getText().toString();
+            address = addressE.getText().toString();
+            homeP = homePE.getText().toString();
+             */
+            ContentValues cv = new ContentValues();
+            cv.put(Users.NAME, String.valueOf(nameE));
+            cv.put(Users.STUDENT_PHONE, String.valueOf(studentPE));
+            cv.put(Users.PARENT_NAME_1, String.valueOf(parentName1E));
+            cv.put(Users.PARENT_NAME_2, String.valueOf(parentName2E));
+            cv.put(Users.PARENT_PHONE_1, String.valueOf(parentP1E));
+            cv.put(Users.PARENT_PHONE_2, String.valueOf(parentP2E));
+            cv.put(Users.ADDRESS, String.valueOf(addressE));
+            cv.put(Users.HOME_PHONE, String.valueOf(homePE));
+            cv.put(Users.ACTIVE, s);
+        }
     }
 
 
@@ -79,13 +99,15 @@ public class MainActivity extends AppCompatActivity {
      */
     public void active_or_not(View view) {
 
-        if (sw.isChecked()) s = 0;
-        else s = 1;
+        if (sw.isChecked()) {
+            s = 0;
+            tv.setText("פעיל");
+        }
+        else {
+            s = 1;
+            tv.setText("לא פעיל");
+        }
     }
-
-
-
-
     /**
      * description- creates menu.
      */
@@ -114,6 +136,3 @@ public class MainActivity extends AppCompatActivity {
         return true;
     }
 }
-
-
-

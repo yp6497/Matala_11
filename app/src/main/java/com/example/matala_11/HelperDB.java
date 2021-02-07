@@ -7,8 +7,8 @@ import android.database.sqlite.SQLiteOpenHelper;
 import static com.example.matala_11.Grades.GRADE;
 import static com.example.matala_11.Grades.SUBJECT;
 import static com.example.matala_11.Grades.TABLE_GRADES;
+import static com.example.matala_11.Users.ACTIVE;
 import static com.example.matala_11.Users.ADDRESS;
-import static com.example.matala_11.Users.AVEIBALE;
 import static com.example.matala_11.Users.HOME_PHONE;
 import static com.example.matala_11.Users.KEY_ID;
 import static com.example.matala_11.Users.NAME;
@@ -36,14 +36,14 @@ public class HelperDB extends SQLiteOpenHelper {
         strCreate="CREATE TABLE "+TABLE_USERS;
         strCreate+=" ("+KEY_ID+" INTEGER PRIMARY KEY,";
         strCreate+=" "+NAME+" TEXT,";
-        strCreate+=" "+AVEIBALE+" INTEGER,";
-        strCreate+=" "+ADDRESS+" TEXT,";
         strCreate+=" "+STUDENT_PHONE+" TEXT,";
-        strCreate+=" "+HOME_PHONE+" TEXT,";
         strCreate+=" "+PARENT_NAME_1+" TEXT,";
         strCreate+=" "+PARENT_NAME_2+" TEXT,";
         strCreate+=" "+PARENT_PHONE_1+" TEXT,";
-        strCreate+=" "+PARENT_PHONE_2+" TEXT";
+        strCreate+=" "+PARENT_PHONE_2+" TEXT,";
+        strCreate+=" "+ADDRESS+" TEXT,";
+        strCreate+=" "+HOME_PHONE+" TEXT,";
+        strCreate+=" "+ACTIVE+" INTEGER ";
         strCreate+=");";
         db.execSQL(strCreate);
 
