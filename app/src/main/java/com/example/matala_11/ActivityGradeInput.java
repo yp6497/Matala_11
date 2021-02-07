@@ -28,7 +28,7 @@ public class ActivityGradeInput extends AppCompatActivity implements AdapterView
 
     SQLiteDatabase db;
     HelperDB hlp;
-    Cursor crsr;
+    Cursor crsr; //
 
     ArrayList<String> tbl = new ArrayList<>();
     ArrayAdapter adp;
