@@ -3,8 +3,8 @@
 
 
      <item
-     android:id="@+id/Ms"
-     android:title="Main screen" />
+     android:id="@+id/Sinfo"
+     android:title="Students information" />
     <item
         android:id="@+id/Grades"
         android:title="Grades" />

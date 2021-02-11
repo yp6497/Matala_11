@@ -39,8 +39,13 @@ public class creditsActivity extends AppCompatActivity {
     public boolean onOptionsItemSelected(MenuItem item) {
 
         String st = item.getTitle().toString();
-        if (st.endsWith("Main screen")) {
-            finish();
+        if (st.endsWith("Grades")) {
+            Intent si = new Intent(this, creditsActivity.class);
+            startActivity(si);
+        }
+        if (st.endsWith("Students information")) {
+            Intent si = new Intent(this, MainActivity.class);
+            startActivity(si);
         }
         return true;
     }

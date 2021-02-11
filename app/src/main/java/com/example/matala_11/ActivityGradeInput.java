@@ -14,6 +14,7 @@ import android.widget.AdapterView;
 import android.widget.ArrayAdapter;
 import android.widget.EditText;
 import android.widget.Spinner;
+import android.widget.TextView;
 import android.widget.Toast;
 
 import java.util.ArrayList;
@@ -32,9 +33,9 @@ public class ActivityGradeInput extends AppCompatActivity implements AdapterView
 
     ArrayList<String> tbl = new ArrayList<>();
     ArrayAdapter adp;
-    ArrayList<Integer> Kil = new ArrayList<Integer>();
+    //ArrayList<Integer> Kil = new ArrayList<Integer>();
     Spinner Sr,Sname;
-    String subject, grade, name, reva;
+    String subject, grade, reva;
     EditText edSubject, /**
      * Which subject the grade related to.
      */
@@ -44,7 +45,7 @@ public class ActivityGradeInput extends AppCompatActivity implements AdapterView
     edName; /**
      * The student's name.
      */
-
+    TextView tv;
     String [] revaim= {"רבע ראשון","רבע שני","רבע שלישי","רבע רביעי"};
 
     @Override
@@ -52,6 +53,7 @@ public class ActivityGradeInput extends AppCompatActivity implements AdapterView
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_grade_input);
 
+        tv= findViewById(R.id.textView);
         edSubject= findViewById(R.id.edSubject);
         edGrade= findViewById(R.id.edGrade);
         //edName= findViewById(R.id.edName);
@@ -62,17 +64,19 @@ public class ActivityGradeInput extends AppCompatActivity implements AdapterView
         db = hlp.getWritableDatabase();
         db.close();
 
-        Sname.setOnItemSelectedListener(this);
-
+        //Sname.setOnItemSelectedListener(this);
+        tbl.add("בחר תלמיד");
         subject=  edSubject.getText().toString();
         grade=  edGrade.getText().toString();
 
         db = hlp.getWritableDatabase();
         tbl = new ArrayList<>();
+        tbl.add("בחר תלמיד");
         crsr = db.query(TABLE_USERS, null, null,null, null, null,null);
 
         int col1 = crsr.getColumnIndex(Users.KEY_ID);
         int col2 = crsr.getColumnIndex(Users.NAME);
+
         int col3 = crsr.getColumnIndex(Users.STUDENT_PHONE);
         int col4 = crsr.getColumnIndex(Users.PARENT_NAME_1);
         int col5 = crsr.getColumnIndex(Users.PARENT_NAME_2);
@@ -81,9 +85,6 @@ public class ActivityGradeInput extends AppCompatActivity implements AdapterView
         int col8 = crsr.getColumnIndex(Users.ADDRESS);
         int col9 = crsr.getColumnIndex(Users.HOME_PHONE);
         int col10 = crsr.getColumnIndex(Users.ACTIVE);
-
-
-
 
         crsr.moveToFirst();
         while (!crsr.isAfterLast()) {
@@ -97,7 +98,9 @@ public class ActivityGradeInput extends AppCompatActivity implements AdapterView
             String address = crsr.getString(col8);
             String homeP = crsr.getString(col9);
             int active = crsr.getInt(col10);
-            String tmp = " " + key + ", " + name + ", " + sdudentP + ", " + parentN1 + ", " + parentN2 + ", " + parentP1 + ", " + parentP2 + ", " + address + ", " + homeP + ", " + active;
+
+            //String tmp = " " + key + ", " + name + ", " + sdudentP + ", " + parentN1 + ", " + parentN2 + ", " + parentP1 + ", " + parentP2 + ", " + address + ", " + homeP + ", " + active;
+            String tmp = " " + name;
             tbl.add(tmp);
             //Kil.add(key);
             crsr.moveToNext();
@@ -105,10 +108,13 @@ public class ActivityGradeInput extends AppCompatActivity implements AdapterView
         crsr.close();
         db.close();
 
-        //Sname.setOnItemSelectedListener(this);
+        Sname.setOnItemSelectedListener(this);
         adp= new ArrayAdapter<String>(this, R.layout.support_simple_spinner_dropdown_item, tbl);
         Sname.setAdapter(adp);
 
+        Sr.setOnItemSelectedListener(this);
+        ArrayAdapter<String> adp = new ArrayAdapter<String>(this, R.layout.support_simple_spinner_dropdown_item, revaim);
+        Sr.setAdapter(adp);
     }
 
     /**
@@ -117,7 +123,7 @@ public class ActivityGradeInput extends AppCompatActivity implements AdapterView
      */
     public void approval(View view) {
 
-        if(edName==null || edSubject==null || edGrade==null){
+        if(edSubject==null || edGrade==null){
             Toast.makeText(this, "please enter all the", Toast.LENGTH_SHORT).show();
         }
         else {
@@ -142,12 +148,9 @@ public class ActivityGradeInput extends AppCompatActivity implements AdapterView
 
         Spinner spinner = (Spinner) parent;
         if (spinner.getId() == R.id.Sname) {
-            //Sr.setOnItemSelectedListener(this);
-            //ArrayAdapter<String> adp = new ArrayAdapter<String>(this, R.layout.support_simple_spinner_dropdown_item, revaim);
-            //Sr.setAdapter(adp);
         }
 
-        if (spinner.getId() == R.id.Sr) {
+        else if (spinner.getId() == R.id.Sr) {
             if (position == 0) {
                 reva = "רבע ראשון";
             } else if (position == 1) {
@@ -185,7 +188,7 @@ public class ActivityGradeInput extends AppCompatActivity implements AdapterView
             Intent si = new Intent(this, creditsActivity.class);
             startActivity(si);
         }
-        if (st.endsWith("Main screen")) {
+        if (st.endsWith("Students information")) {
             Intent si = new Intent(this, MainActivity.class);
             startActivity(si);
         }

@@ -19,7 +19,6 @@ import android.widget.Toast;
 
 /**
  * The type Main activity.
- *
  * @author Yulia Piavka <yp6497@bs.amalnet.k12.il>
  * @version 1.1
  * @since 12 /1/2021 short description-
@@ -28,7 +27,7 @@ public class MainActivity extends AppCompatActivity {
 
 
     EditText nameE, addressE, studentPE, homePE, parentName1E, parentName2E, parentP1E, parentP2E;
-    String name, address, studentP,homeP, parentName1, parentName2, parentP1, parentP2;
+    String nam, address, studentP,homeP, parentName1, parentName2, parentP1, parentP2;
     TextView tv;
 
     SQLiteDatabase db;
@@ -65,12 +64,15 @@ public class MainActivity extends AppCompatActivity {
      */
     public void aprrov(View view) {
 
+        /*
         if(parentP1E==null || parentName1E==null || addressE==null || nameE==null || studentPE==null )
             Toast.makeText(this, "please enter all the", Toast.LENGTH_SHORT).show();
 
         else{
+
+         */
+            nam = nameE.getText().toString();
             /*
-            name = nameE.getText().toString();
             studentP = studentPE.getText().toString();
             parentName1 = parentName1E.getText().toString();
             parentName2 = parentName2E.getText().toString();
@@ -80,7 +82,7 @@ public class MainActivity extends AppCompatActivity {
             homeP = homePE.getText().toString();
              */
             ContentValues cv = new ContentValues();
-            cv.put(Users.NAME, String.valueOf(nameE));
+            cv.put(Users.NAME, nam);
             cv.put(Users.STUDENT_PHONE, String.valueOf(studentPE));
             cv.put(Users.PARENT_NAME_1, String.valueOf(parentName1E));
             cv.put(Users.PARENT_NAME_2, String.valueOf(parentName2E));
@@ -89,9 +91,13 @@ public class MainActivity extends AppCompatActivity {
             cv.put(Users.ADDRESS, String.valueOf(addressE));
             cv.put(Users.HOME_PHONE, String.valueOf(homePE));
             cv.put(Users.ACTIVE, s);
-        }
-    }
 
+            db = hlp.getWritableDatabase();
+            db.insert(Users.TABLE_USERS, null, cv);
+            db.close();
+
+        }
+    //}
 
     /**
      * description- if switch is on= active, else= not active and puts the value in s.

@@ -17,7 +17,7 @@
 
         <ScrollView
             android:layout_width="match_parent"
-            android:layout_height="563dp">
+            android:layout_height="488dp">
 
             <LinearLayout
                 android:layout_width="match_parent"
@@ -26,7 +26,7 @@
 
                 <Space
                     android:layout_width="match_parent"
-                    android:layout_height="52dp" />
+                    android:layout_height="48dp" />
 
                 <LinearLayout
                     android:layout_width="match_parent"
@@ -53,7 +53,7 @@
 
                 <Space
                     android:layout_width="match_parent"
-                    android:layout_height="36dp" />
+                    android:layout_height="34dp" />
 
                 <LinearLayout
                     android:layout_width="match_parent"
@@ -80,7 +80,7 @@
 
                 <Space
                     android:layout_width="match_parent"
-                    android:layout_height="36dp" />
+                    android:layout_height="34dp" />
 
                 <LinearLayout
                     android:layout_width="match_parent"
@@ -107,7 +107,7 @@
 
                 <Space
                     android:layout_width="match_parent"
-                    android:layout_height="29dp" />
+                    android:layout_height="34dp" />
 
                 <LinearLayout
                     android:layout_width="match_parent"
@@ -134,7 +134,7 @@
 
                 <Space
                     android:layout_width="match_parent"
-                    android:layout_height="36dp" />
+                    android:layout_height="34dp" />
 
                 <LinearLayout
                     android:layout_width="match_parent"
@@ -162,7 +162,7 @@
 
                 <Space
                     android:layout_width="match_parent"
-                    android:layout_height="35dp" />
+                    android:layout_height="34dp" />
 
                 <LinearLayout
                     android:layout_width="match_parent"
@@ -189,7 +189,7 @@
 
                 <Space
                     android:layout_width="match_parent"
-                    android:layout_height="36dp" />
+                    android:layout_height="34dp" />
 
                 <LinearLayout
                     android:layout_width="match_parent"
@@ -216,7 +216,7 @@
 
                 <Space
                     android:layout_width="match_parent"
-                    android:layout_height="36dp" />
+                    android:layout_height="34dp" />
 
                 <LinearLayout
                     android:layout_width="match_parent"
@@ -243,7 +243,7 @@
 
                 <Space
                     android:layout_width="match_parent"
-                    android:layout_height="36dp" />
+                    android:layout_height="34dp" />
 
                 <LinearLayout
                     android:layout_width="match_parent"
@@ -270,8 +270,8 @@
                         android:id="@+id/sw"
                         android:layout_width="147dp"
                         android:layout_height="match_parent"
-                        android:onClick="active_or_not"
-                        android:layout_weight="1" />
+                        android:layout_weight="1"
+                        android:onClick="active_or_not" />
 
                     <Space
                         android:layout_width="50dp"
@@ -284,7 +284,7 @@
 
         <Space
             android:layout_width="match_parent"
-            android:layout_height="57dp" />
+            android:layout_height="34dp" />
 
         <LinearLayout
             android:layout_width="match_parent"
