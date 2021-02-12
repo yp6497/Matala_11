@@ -13,4 +13,9 @@
      android:id="@+id/Credits"
      android:title="Credits" />
 
+    <item
+        android:id="@+id/FilteringAndSorting"
+        android:title="Filtering and sorting" />
+
+
     </menu>

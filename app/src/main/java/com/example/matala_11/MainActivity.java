@@ -27,7 +27,7 @@ public class MainActivity extends AppCompatActivity {
 
 
     EditText nameE, addressE, studentPE, homePE, parentName1E, parentName2E, parentP1E, parentP2E;
-    String nam, address, studentP,homeP, parentName1, parentName2, parentP1, parentP2;
+    String name, address, studentP,homeP, parentName1, parentName2, parentP1, parentP2;
     TextView tv;
 
     SQLiteDatabase db;
@@ -71,8 +71,7 @@ public class MainActivity extends AppCompatActivity {
         else{
 
          */
-            nam = nameE.getText().toString();
-            /*
+            name = nameE.getText().toString();
             studentP = studentPE.getText().toString();
             parentName1 = parentName1E.getText().toString();
             parentName2 = parentName2E.getText().toString();
@@ -80,16 +79,16 @@ public class MainActivity extends AppCompatActivity {
             parentP2 = parentP2E.getText().toString();
             address = addressE.getText().toString();
             homeP = homePE.getText().toString();
-             */
+
             ContentValues cv = new ContentValues();
-            cv.put(Users.NAME, nam);
-            cv.put(Users.STUDENT_PHONE, String.valueOf(studentPE));
-            cv.put(Users.PARENT_NAME_1, String.valueOf(parentName1E));
-            cv.put(Users.PARENT_NAME_2, String.valueOf(parentName2E));
-            cv.put(Users.PARENT_PHONE_1, String.valueOf(parentP1E));
-            cv.put(Users.PARENT_PHONE_2, String.valueOf(parentP2E));
-            cv.put(Users.ADDRESS, String.valueOf(addressE));
-            cv.put(Users.HOME_PHONE, String.valueOf(homePE));
+            cv.put(Users.NAME, name);
+            cv.put(Users.STUDENT_PHONE, studentP);
+            cv.put(Users.PARENT_NAME_1, parentName1);
+            cv.put(Users.PARENT_NAME_2, parentName2);
+            cv.put(Users.PARENT_PHONE_1, parentP1);
+            cv.put(Users.PARENT_PHONE_2, parentP2);
+            cv.put(Users.ADDRESS, address);
+            cv.put(Users.HOME_PHONE, homeP);
             cv.put(Users.ACTIVE, s);
 
             db = hlp.getWritableDatabase();

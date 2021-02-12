@@ -9,18 +9,19 @@ import android.widget.TextView;
 
 public class CustomAdapter extends BaseAdapter {
 
-    String cityList[];
     Context context;
+    String namelist[];
     LayoutInflater inflter;
 
-    public CustomAdapter(Context applicationContext, String[] cityList, int[] symbols) {
+    public CustomAdapter(Context applicationContext, String[] name) {
         this.context = context;
         inflter = (LayoutInflater.from(applicationContext));
     }
 
+
     @Override
     public int getCount() {
-        return cityList.length;
+        return 0;
     }
 
     @Override
@@ -36,9 +37,14 @@ public class CustomAdapter extends BaseAdapter {
     @Override
     public View getView(int i, View view, ViewGroup viewGroup) {
         view = inflter.inflate(R.layout.custom_lv_layout, null);
-        TextView tvn = (TextView) view.findViewById(R.id.textView);
-        tvn.setText("bo");
+        TextView name = (TextView) view.findViewById(R.id.textView);
+        TextView grade = (TextView) view.findViewById(R.id.textView2);
+        TextView subject = (TextView) view.findViewById(R.id.textView3);
+        TextView reva = (TextView) view.findViewById(R.id.textView4);
+        name.setText(namelist[i]);
+        grade.setText("bo");
+        subject.setText("bo");
+        reva.setText("bo");
         return view;
     }
-
 }

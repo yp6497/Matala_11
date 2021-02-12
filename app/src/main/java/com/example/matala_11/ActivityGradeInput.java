@@ -29,23 +29,20 @@ public class ActivityGradeInput extends AppCompatActivity implements AdapterView
 
     SQLiteDatabase db;
     HelperDB hlp;
-    Cursor crsr; //
+    Cursor crsr;
 
     ArrayList<String> tbl = new ArrayList<>();
     ArrayAdapter adp;
-    //ArrayList<Integer> Kil = new ArrayList<Integer>();
+    ArrayList<Integer> Kil = new ArrayList<Integer>();
     Spinner Sr,Sname;
     String subject, grade, reva;
     EditText edSubject, /**
      * Which subject the grade related to.
      */
-    edGrade, /**
+    edGrade; /**
      * The grade.
      */
-    edName; /**
-     * The student's name.
-     */
-    TextView tv;
+    //TextView tv;
     String [] revaim= {"רבע ראשון","רבע שני","רבע שלישי","רבע רביעי"};
 
     @Override
@@ -53,7 +50,6 @@ public class ActivityGradeInput extends AppCompatActivity implements AdapterView
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_grade_input);
 
-        tv= findViewById(R.id.textView);
         edSubject= findViewById(R.id.edSubject);
         edGrade= findViewById(R.id.edGrade);
         //edName= findViewById(R.id.edName);
@@ -102,7 +98,7 @@ public class ActivityGradeInput extends AppCompatActivity implements AdapterView
             //String tmp = " " + key + ", " + name + ", " + sdudentP + ", " + parentN1 + ", " + parentN2 + ", " + parentP1 + ", " + parentP2 + ", " + address + ", " + homeP + ", " + active;
             String tmp = " " + name;
             tbl.add(tmp);
-            //Kil.add(key);
+            Kil.add(key);
             crsr.moveToNext();
         }
         crsr.close();
@@ -188,8 +184,12 @@ public class ActivityGradeInput extends AppCompatActivity implements AdapterView
             Intent si = new Intent(this, creditsActivity.class);
             startActivity(si);
         }
-        if (st.endsWith("Students information")) {
+        else if (st.endsWith("Students information")) {
             Intent si = new Intent(this, MainActivity.class);
+            startActivity(si);
+        }
+        else if (st.endsWith("Filtering and sorting")) {
+            Intent si = new Intent(this, ActivityFilteringSorting.class);
             startActivity(si);
         }
         return true;
