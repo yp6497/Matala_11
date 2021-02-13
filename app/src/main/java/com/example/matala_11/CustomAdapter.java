@@ -13,15 +13,16 @@ public class CustomAdapter extends BaseAdapter {
     String namelist[];
     LayoutInflater inflter;
 
-    public CustomAdapter(Context applicationContext, String[] name) {
+    public CustomAdapter(Context applicationContext, String[] namelist) {
         this.context = context;
+        this.namelist = namelist;
         inflter = (LayoutInflater.from(applicationContext));
     }
 
-
     @Override
     public int getCount() {
-        return 0;
+
+        return namelist.length;
     }
 
     @Override

@@ -13,14 +13,69 @@
 
         <Space
             android:layout_width="match_parent"
-            android:layout_height="155dp" />
+            android:layout_height="41dp" />
 
-        <ListView
-            android:id="@+id/lv"
+        <LinearLayout
             android:layout_width="match_parent"
-            android:layout_height="match_parent">
+            android:layout_height="115dp"
+            android:orientation="horizontal">
 
-        </ListView>
+            <Space
+                android:layout_width="45dp"
+                android:layout_height="38dp"
+                android:layout_weight="1" />
+
+            <Spinner
+                android:id="@+id/spinner"
+                android:layout_width="120dp"
+                android:layout_height="36dp"
+                android:layout_weight="1" />
+
+            <Space
+                android:layout_width="60dp"
+                android:layout_height="36dp"
+                android:layout_weight="1" />
+
+            <Spinner
+                android:id="@+id/spinner2"
+                android:layout_width="120dp"
+                android:layout_height="37dp"
+                android:layout_weight="1" />
+
+            <Space
+                android:layout_width="45dp"
+                android:layout_height="36dp"
+                android:layout_weight="1" />
+
+
+        </LinearLayout>
+
+        <Space
+            android:layout_width="match_parent"
+            android:layout_height="32dp" />
+
+        <LinearLayout
+            android:layout_width="match_parent"
+            android:layout_height="match_parent"
+            android:orientation="horizontal">
+
+            <Space
+                android:layout_width="12dp"
+                android:layout_height="28dp" />
+
+            <ListView
+                android:id="@+id/lv"
+                android:layout_width="385dp"
+                android:layout_height="match_parent">
+
+            </ListView>
+
+            <Space
+                android:layout_width="12dp"
+                android:layout_height="26dp" />
+
+        </LinearLayout>
     </LinearLayout>
+
 
 </androidx.constraintlayout.widget.ConstraintLayout>

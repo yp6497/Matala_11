@@ -25,7 +25,6 @@ import android.widget.Toast;
  */
 public class MainActivity extends AppCompatActivity {
 
-
     EditText nameE, addressE, studentPE, homePE, parentName1E, parentName2E, parentP1E, parentP2E;
     String name, address, studentP,homeP, parentName1, parentName2, parentP1, parentP2;
     TextView tv;
@@ -55,7 +54,6 @@ public class MainActivity extends AppCompatActivity {
         hlp = new HelperDB(this);
         db = hlp.getWritableDatabase();
         db.close();
-
     }
 
     /**
@@ -69,7 +67,6 @@ public class MainActivity extends AppCompatActivity {
             Toast.makeText(this, "please enter all the", Toast.LENGTH_SHORT).show();
 
         else{
-
          */
             name = nameE.getText().toString();
             studentP = studentPE.getText().toString();
@@ -113,6 +110,7 @@ public class MainActivity extends AppCompatActivity {
             tv.setText("לא פעיל");
         }
     }
+
     /**
      * description- creates menu.
      */

@@ -26,25 +26,18 @@ public class ActivityFilteringSorting extends AppCompatActivity implements Adapt
         lv.setOnItemClickListener(this);
         lv.setChoiceMode(ListView.CHOICE_MODE_SINGLE);
 
-        //ArrayAdapter<String> adp = new ArrayAdapter<String>(this,R.layout.support_simple_spinner_dropdown_item,
-         //       names);
-        //lv.setAdapter(adp);
-
         CustomAdapter customadp = new CustomAdapter(getApplicationContext(),
                names);
          lv.setAdapter(customadp);
-
     }
 
+    /**
+     * description- creates menu.
+     */
     @Override
     public void onItemClick(AdapterView<?> parent, View view, int position, long id) {
 
     }
-
-
-
-
-
 
     /**
      * description- creates menu.
@@ -55,6 +48,7 @@ public class ActivityFilteringSorting extends AppCompatActivity implements Adapt
         getMenuInflater().inflate(R.menu.main, menu);
         return true;
     }
+
     /**
      * description- if "Main screen" selected: return back to the Main activity.
      */

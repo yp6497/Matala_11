@@ -161,8 +161,8 @@ public class ActivityGradeInput extends AppCompatActivity implements AdapterView
 
     @Override
     public void onNothingSelected(AdapterView<?> parent) {
-    }
 
+    }
 
     /**
      * description- creates menu.
@@ -173,6 +173,7 @@ public class ActivityGradeInput extends AppCompatActivity implements AdapterView
         getMenuInflater().inflate(R.menu.main, menu);
         return true;
     }
+
     /**
      * description- if "Main screen" selected: return back to the Main activity.
      */
