@@ -17,6 +17,10 @@ public class ActivityFilteringSorting extends AppCompatActivity implements Adapt
     ListView lv;
     TextView tv,tv2;
     String[] names= {"a","b","c","d","e"};
+    String[] subjects= {"aנ","bנ","cנ","dנ","eנ"};
+    String[] reva= {"רבע ראשון","רבע ראשון","רבע ראשון","רבע ראשון","רבע ראשון"};
+    String[] gardes= {"100","89","78","34","4"};
+
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
@@ -27,7 +31,7 @@ public class ActivityFilteringSorting extends AppCompatActivity implements Adapt
         lv.setChoiceMode(ListView.CHOICE_MODE_SINGLE);
 
         CustomAdapter customadp = new CustomAdapter(getApplicationContext(),
-               names);
+                names,subjects,reva,gardes);
          lv.setAdapter(customadp);
     }
 
@@ -50,7 +54,7 @@ public class ActivityFilteringSorting extends AppCompatActivity implements Adapt
     }
 
     /**
-     * description- if "Main screen" selected: return back to the Main activity.
+     * description- the menu. Moves to the selected activity.
      */
     @Override
     public boolean onOptionsItemSelected(MenuItem item) {
@@ -60,7 +64,7 @@ public class ActivityFilteringSorting extends AppCompatActivity implements Adapt
             Intent si = new Intent(this, creditsActivity.class);
             startActivity(si);
         }
-        else if (st.endsWith("Students information")) {
+        else if (st.endsWith("Grades")) {
             Intent si = new Intent(this, MainActivity.class);
             startActivity(si);
         }

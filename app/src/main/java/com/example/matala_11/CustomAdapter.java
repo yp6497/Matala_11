@@ -11,11 +11,17 @@ public class CustomAdapter extends BaseAdapter {
 
     Context context;
     String namelist[];
+    String subjectlist[];
+    String revalist[];
+    String gardelist[];
     LayoutInflater inflter;
 
-    public CustomAdapter(Context applicationContext, String[] namelist) {
+    public CustomAdapter(Context applicationContext, String[] namelist, String[] subjectlist, String[] revalist, String[] gardelist) {
         this.context = context;
         this.namelist = namelist;
+        this.subjectlist= subjectlist;
+        this. revalist= revalist;
+        this.gardelist=gardelist;
         inflter = (LayoutInflater.from(applicationContext));
     }
 
@@ -38,14 +44,15 @@ public class CustomAdapter extends BaseAdapter {
     @Override
     public View getView(int i, View view, ViewGroup viewGroup) {
         view = inflter.inflate(R.layout.custom_lv_layout, null);
-        TextView name = (TextView) view.findViewById(R.id.textView);
-        TextView grade = (TextView) view.findViewById(R.id.textView2);
+        TextView name = (TextView) view.findViewById(R.id.textView4);
+        TextView grade = (TextView) view.findViewById(R.id.textView);
         TextView subject = (TextView) view.findViewById(R.id.textView3);
-        TextView reva = (TextView) view.findViewById(R.id.textView4);
+        TextView reva = (TextView) view.findViewById(R.id.textView2);
         name.setText(namelist[i]);
-        grade.setText("bo");
-        subject.setText("bo");
-        reva.setText("bo");
+        grade.setText(gardelist[i]);
+        reva.setText(revalist[i]);
+        subject.setText(subjectlist[i]);
+
         return view;
     }
 }

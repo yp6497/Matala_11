@@ -73,6 +73,7 @@ public class ActivityGradeInput extends AppCompatActivity implements AdapterView
         int col1 = crsr.getColumnIndex(Users.KEY_ID);
         int col2 = crsr.getColumnIndex(Users.NAME);
 
+        /*
         int col3 = crsr.getColumnIndex(Users.STUDENT_PHONE);
         int col4 = crsr.getColumnIndex(Users.PARENT_NAME_1);
         int col5 = crsr.getColumnIndex(Users.PARENT_NAME_2);
@@ -81,12 +82,13 @@ public class ActivityGradeInput extends AppCompatActivity implements AdapterView
         int col8 = crsr.getColumnIndex(Users.ADDRESS);
         int col9 = crsr.getColumnIndex(Users.HOME_PHONE);
         int col10 = crsr.getColumnIndex(Users.ACTIVE);
+         */
 
         crsr.moveToFirst();
         while (!crsr.isAfterLast()) {
             int key = crsr.getInt(col1);
             String name = crsr.getString(col2);
-            String sdudentP = crsr.getString(col3);
+            /*String sdudentP = crsr.getString(col3);
             String parentN1 = crsr.getString(col4);
             String parentN2 = crsr.getString(col5);
             String parentP1 = crsr.getString(col6);
@@ -94,7 +96,7 @@ public class ActivityGradeInput extends AppCompatActivity implements AdapterView
             String address = crsr.getString(col8);
             String homeP = crsr.getString(col9);
             int active = crsr.getInt(col10);
-
+             */
             //String tmp = " " + key + ", " + name + ", " + sdudentP + ", " + parentN1 + ", " + parentN2 + ", " + parentP1 + ", " + parentP2 + ", " + address + ", " + homeP + ", " + active;
             String tmp = " " + name;
             tbl.add(tmp);
@@ -175,7 +177,7 @@ public class ActivityGradeInput extends AppCompatActivity implements AdapterView
     }
 
     /**
-     * description- if "Main screen" selected: return back to the Main activity.
+     * description- the menu. Moves to the selected activity.
      */
     @Override
     public boolean onOptionsItemSelected(MenuItem item) {

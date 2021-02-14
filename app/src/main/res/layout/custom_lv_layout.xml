@@ -4,6 +4,11 @@
     android:layout_width="match_parent"
     android:layout_height="wrap_content">
 
+    <Space
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_weight="1" />
+
     <TextView
         android:id="@+id/textView"
         android:orientation="horizontal"
@@ -12,13 +17,23 @@
         android:layout_weight="1"
         android:text="TextView" />
 
-    <TextView
-        android:id="@+id/textView2"
-        android:orientation="horizontal"
+    <Space
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
+        android:layout_weight="1" />
+
+    <TextView
+        android:id="@+id/textView2"
+        android:layout_width="94dp"
+        android:layout_height="wrap_content"
         android:layout_weight="1"
+        android:orientation="horizontal"
         android:text="TextView" />
+
+    <Space
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_weight="1" />
 
     <TextView
         android:id="@+id/textView3"
@@ -28,6 +43,11 @@
         android:layout_weight="1"
         android:text="TextView" />
 
+    <Space
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_weight="1" />
+
     <TextView
         android:id="@+id/textView4"
         android:orientation="horizontal"
@@ -35,5 +55,10 @@
         android:layout_height="wrap_content"
         android:layout_weight="1"
         android:text="TextView" />
+
+    <Space
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_weight="1" />
 </LinearLayout>
 

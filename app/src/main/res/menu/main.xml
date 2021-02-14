@@ -5,17 +5,17 @@
      <item
      android:id="@+id/Sinfo"
      android:title="Students information" />
+
     <item
         android:id="@+id/Grades"
         android:title="Grades" />
 
     <item
-     android:id="@+id/Credits"
-     android:title="Credits" />
-
-    <item
         android:id="@+id/FilteringAndSorting"
         android:title="Filtering and sorting" />
 
+    <item
+        android:id="@+id/Credits"
+        android:title="Credits" />
 
     </menu>

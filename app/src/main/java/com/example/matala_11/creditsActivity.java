@@ -33,7 +33,7 @@ public class creditsActivity extends AppCompatActivity {
     }
 
     /**
-     * description- if "Main screen" selected: return back to the Main activity.
+     * description- the menu. Moves to the selected activity.
      */
     @Override
     public boolean onOptionsItemSelected(MenuItem item) {
@@ -45,6 +45,10 @@ public class creditsActivity extends AppCompatActivity {
         }
         if (st.endsWith("Students information")) {
             Intent si = new Intent(this, MainActivity.class);
+            startActivity(si);
+        }
+        else if (st.endsWith("Filtering and sorting")) {
+            Intent si = new Intent(this, ActivityFilteringSorting.class);
             startActivity(si);
         }
         return true;

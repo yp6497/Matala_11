@@ -136,6 +136,10 @@ public class MainActivity extends AppCompatActivity {
             Intent si = new Intent(this, ActivityGradeInput.class);
             startActivity(si);
         }
+        else if (st.endsWith("Filtering and sorting")) {
+            Intent si = new Intent(this, ActivityFilteringSorting.class);
+            startActivity(si);
+        }
         return true;
     }
 }
