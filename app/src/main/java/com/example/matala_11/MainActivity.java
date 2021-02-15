@@ -140,6 +140,10 @@ public class MainActivity extends AppCompatActivity {
             Intent si = new Intent(this, ActivityFilteringSorting.class);
             startActivity(si);
         }
+        else if (st.endsWith("information")) {
+            Intent si = new Intent(this, ActivityDataDisplay.class);
+            startActivity(si);
+        }
         return true;
     }
 }

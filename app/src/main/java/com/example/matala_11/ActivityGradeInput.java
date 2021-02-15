@@ -61,7 +61,7 @@ public class ActivityGradeInput extends AppCompatActivity implements AdapterView
         db.close();
 
         //Sname.setOnItemSelectedListener(this);
-        tbl.add("בחר תלמיד");
+        //tbl.add("בחר תלמיד");
         subject=  edSubject.getText().toString();
         grade=  edGrade.getText().toString();
 
