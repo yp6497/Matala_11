@@ -60,16 +60,20 @@ public class ActivityFilteringSorting extends AppCompatActivity implements Adapt
     public boolean onOptionsItemSelected(MenuItem item) {
 
         String st = item.getTitle().toString();
+        if (st.endsWith("information")) {
+            Intent si = new Intent(this, ActivityDataDisplay.class);
+            startActivity(si);
+        }
+        else if (st.endsWith("Students information")) {
+            Intent si = new Intent(this, MainActivity.class);
+            startActivity(si);
+        }
         if (st.endsWith("Credits")) {
             Intent si = new Intent(this, creditsActivity.class);
             startActivity(si);
         }
         else if (st.endsWith("Grades")) {
-            Intent si = new Intent(this, MainActivity.class);
-            startActivity(si);
-        }
-        else if (st.endsWith("Filtering and sorting")) {
-            Intent si = new Intent(this, ActivityFilteringSorting.class);
+            Intent si = new Intent(this, ActivityGradeInput.class);
             startActivity(si);
         }
         return true;

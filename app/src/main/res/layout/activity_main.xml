@@ -16,7 +16,7 @@
             android:layout_height="wrap_content" />
 
         <ScrollView
-            android:layout_width="match_parent"
+            android:layout_width="381dp"
             android:layout_height="488dp">
 
             <LinearLayout
@@ -26,50 +26,48 @@
 
                 <Space
                     android:layout_width="match_parent"
-                    android:layout_height="48dp" />
+                    android:layout_height="34dp" />
 
                 <LinearLayout
                     android:layout_width="match_parent"
-                    android:layout_height="46dp"
-                    android:orientation="horizontal">
+                    android:layout_height="wrap_content"
+                    android:orientation="vertical">
 
-                    <Space
-                        android:layout_width="176dp"
-                        android:layout_height="match_parent" />
+                    <TextView
+                        android:id="@+id/textView5"
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content"
+                        android:layout_gravity="right"
+                        android:layout_weight="1"
+                        android:text="תלמיד:" />
 
                     <EditText
                         android:id="@+id/name"
                         android:layout_width="wrap_content"
                         android:layout_height="wrap_content"
+                        android:layout_gravity="right"
                         android:ems="10"
-                        android:hint="שם תלמיד"
+                        android:hint="שם"
                         android:inputType="textPersonName" />
 
                     <Space
-                        android:layout_width="80dp"
-                        android:layout_height="match_parent"
-                        android:layout_weight="1" />
-                </LinearLayout>
+                        android:layout_width="match_parent"
+                        android:layout_height="34dp" />
 
-                <Space
-                    android:layout_width="match_parent"
-                    android:layout_height="34dp" />
+                </LinearLayout>
 
                 <LinearLayout
                     android:layout_width="match_parent"
                     android:layout_height="match_parent"
-                    android:orientation="horizontal">
-
-                    <Space
-                        android:layout_width="176dp"
-                        android:layout_height="match_parent" />
+                    android:orientation="vertical">
 
                     <EditText
                         android:id="@+id/studentP"
                         android:layout_width="wrap_content"
                         android:layout_height="wrap_content"
+                        android:layout_gravity="right"
                         android:ems="10"
-                        android:hint="טלפון התלמיד"
+                        android:hint="טלפון"
                         android:inputType="textPersonName" />
 
                     <Space
@@ -85,18 +83,23 @@
                 <LinearLayout
                     android:layout_width="match_parent"
                     android:layout_height="match_parent"
-                    android:orientation="horizontal">
+                    android:orientation="vertical">
 
-                    <Space
-                        android:layout_width="176dp"
-                        android:layout_height="match_parent" />
+                    <TextView
+                        android:id="@+id/textView6"
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content"
+                        android:layout_gravity="right"
+                        android:layout_weight="1"
+                        android:text="הורה ראשון:" />
 
                     <EditText
                         android:id="@+id/parentName1"
                         android:layout_width="wrap_content"
                         android:layout_height="wrap_content"
+                        android:layout_gravity="right"
                         android:ems="10"
-                        android:hint="שם ההורה"
+                        android:hint="שם"
                         android:inputType="textPersonName" />
 
                     <Space
@@ -112,18 +115,15 @@
                 <LinearLayout
                     android:layout_width="match_parent"
                     android:layout_height="match_parent"
-                    android:orientation="horizontal">
-
-                    <Space
-                        android:layout_width="176dp"
-                        android:layout_height="wrap_content" />
+                    android:orientation="vertical">
 
                     <EditText
                         android:id="@+id/parentP1"
                         android:layout_width="wrap_content"
                         android:layout_height="wrap_content"
+                        android:layout_gravity="right"
                         android:ems="10"
-                        android:hint="טלפון ההורה"
+                        android:hint="טלפון"
                         android:inputType="textPersonName" />
 
                     <Space
@@ -139,18 +139,22 @@
                 <LinearLayout
                     android:layout_width="match_parent"
                     android:layout_height="match_parent"
-                    android:orientation="horizontal">
+                    android:orientation="vertical">
 
-                    <Space
-                        android:layout_width="176dp"
-                        android:layout_height="wrap_content" />
+                    <TextView
+                        android:id="@+id/textView7"
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content"
+                        android:layout_gravity="right"
+                        android:text="הורה שני:" />
 
                     <EditText
                         android:id="@+id/parentName2"
                         android:layout_width="wrap_content"
                         android:layout_height="wrap_content"
+                        android:layout_gravity="right"
                         android:ems="10"
-                        android:hint=" ההורה השני"
+                        android:hint="שם"
                         android:inputType="textPersonName" />
 
                     <Space
@@ -167,18 +171,15 @@
                 <LinearLayout
                     android:layout_width="match_parent"
                     android:layout_height="match_parent"
-                    android:orientation="horizontal">
-
-                    <Space
-                        android:layout_width="176dp"
-                        android:layout_height="wrap_content" />
+                    android:orientation="vertical">
 
                     <EditText
                         android:id="@+id/parentP2"
                         android:layout_width="wrap_content"
                         android:layout_height="wrap_content"
+                        android:layout_gravity="right"
                         android:ems="10"
-                        android:hint="טלפון ההורה השני"
+                        android:hint="טלפון"
                         android:inputType="textPersonName" />
 
                     <Space
@@ -194,18 +195,20 @@
                 <LinearLayout
                     android:layout_width="match_parent"
                     android:layout_height="match_parent"
-                    android:orientation="horizontal">
+                    android:orientation="vertical">
 
-                    <Space
-                        android:layout_width="176dp"
-                        android:layout_height="wrap_content" />
+                    <TextView
+                        android:id="@+id/textView9"
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content"
+                        android:text="כתובת:" />
 
                     <EditText
                         android:id="@+id/address"
                         android:layout_width="wrap_content"
                         android:layout_height="wrap_content"
+                        android:layout_gravity="right"
                         android:ems="10"
-                        android:hint="כתובת"
                         android:inputType="textPersonName" />
 
                     <Space
@@ -221,18 +224,20 @@
                 <LinearLayout
                     android:layout_width="match_parent"
                     android:layout_height="match_parent"
-                    android:orientation="horizontal">
+                    android:orientation="vertical">
 
-                    <Space
-                        android:layout_width="176dp"
-                        android:layout_height="wrap_content" />
+                    <TextView
+                        android:id="@+id/textView8"
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content"
+                        android:text="טלפון הבית:" />
 
                     <EditText
                         android:id="@+id/homeP"
                         android:layout_width="wrap_content"
                         android:layout_height="wrap_content"
+                        android:layout_gravity="right"
                         android:ems="10"
-                        android:hint="טלפון הבית"
                         android:inputType="textPersonName" />
 
                     <Space
@@ -247,36 +252,25 @@
 
                 <LinearLayout
                     android:layout_width="match_parent"
-                    android:layout_height="43dp"
-                    android:orientation="horizontal">
-
-                    <Space
-                        android:layout_width="76dp"
-                        android:layout_height="29dp" />
+                    android:layout_height="wrap_content"
+                    android:orientation="vertical">
 
                     <TextView
                         android:id="@+id/tv"
-                        android:layout_width="198dp"
-                        android:layout_height="29dp"
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content"
+                        android:layout_gravity="right"
                         android:layout_weight="1"
                         android:text="לא פעיל" />
-
-                    <Space
-                        android:layout_width="31dp"
-                        android:layout_height="match_parent"
-                        android:layout_weight="1" />
 
                     <Switch
                         android:id="@+id/sw"
                         android:layout_width="147dp"
                         android:layout_height="match_parent"
+                        android:layout_gravity="right"
                         android:layout_weight="1"
                         android:onClick="active_or_not" />
 
-                    <Space
-                        android:layout_width="50dp"
-                        android:layout_height="match_parent"
-                        android:layout_weight="1" />
                 </LinearLayout>
 
             </LinearLayout>

@@ -19,6 +19,7 @@ import android.widget.Toast;
 
 import java.util.ArrayList;
 
+import static com.example.matala_11.Users.KEY_ID;
 import static com.example.matala_11.Users.TABLE_USERS;
 
 /**
@@ -35,14 +36,15 @@ public class ActivityGradeInput extends AppCompatActivity implements AdapterView
     ArrayAdapter adp;
     ArrayList<Integer> Kil = new ArrayList<Integer>();
     Spinner Sr,Sname;
-    String subject, grade, reva;
+    String subject, grade, reva,name;
     EditText edSubject, /**
      * Which subject the grade related to.
      */
     edGrade; /**
      * The grade.
      */
-    //TextView tv;
+    int count=0,kid;
+    String[] namess=null;
     String [] revaim= {"רבע ראשון","רבע שני","רבע שלישי","רבע רביעי"};
 
     @Override
@@ -50,11 +52,11 @@ public class ActivityGradeInput extends AppCompatActivity implements AdapterView
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_grade_input);
 
-        edSubject= findViewById(R.id.edSubject);
-        edGrade= findViewById(R.id.edGrade);
+        edSubject = findViewById(R.id.edSubject);
+        edGrade = findViewById(R.id.edGrade);
         //edName= findViewById(R.id.edName);
-        Sr= findViewById(R.id.Sr);
-        Sname= findViewById(R.id.Sname);
+        Sr = findViewById(R.id.Sr);
+        Sname = findViewById(R.id.Sname);
 
         hlp = new HelperDB(this);
         db = hlp.getWritableDatabase();
@@ -62,13 +64,13 @@ public class ActivityGradeInput extends AppCompatActivity implements AdapterView
 
         //Sname.setOnItemSelectedListener(this);
         //tbl.add("בחר תלמיד");
-        subject=  edSubject.getText().toString();
-        grade=  edGrade.getText().toString();
+        subject = edSubject.getText().toString();
+        grade = edGrade.getText().toString();
 
         db = hlp.getWritableDatabase();
         tbl = new ArrayList<>();
         tbl.add("בחר תלמיד");
-        crsr = db.query(TABLE_USERS, null, null,null, null, null,null);
+        crsr = db.query(TABLE_USERS, null, null, null, null, null, null);
 
         int col1 = crsr.getColumnIndex(Users.KEY_ID);
         int col2 = crsr.getColumnIndex(Users.NAME);
@@ -81,38 +83,41 @@ public class ActivityGradeInput extends AppCompatActivity implements AdapterView
         int col7 = crsr.getColumnIndex(Users.PARENT_PHONE_2);
         int col8 = crsr.getColumnIndex(Users.ADDRESS);
         int col9 = crsr.getColumnIndex(Users.HOME_PHONE);
-        int col10 = crsr.getColumnIndex(Users.ACTIVE);
          */
+        int col10 = crsr.getColumnIndex(Users.ACTIVE);
+
 
         crsr.moveToFirst();
         while (!crsr.isAfterLast()) {
-            int key = crsr.getInt(col1);
-            String name = crsr.getString(col2);
-            /*String sdudentP = crsr.getString(col3);
-            String parentN1 = crsr.getString(col4);
-            String parentN2 = crsr.getString(col5);
-            String parentP1 = crsr.getString(col6);
-            String parentP2 = crsr.getString(col7);
-            String address = crsr.getString(col8);
-            String homeP = crsr.getString(col9);
-            int active = crsr.getInt(col10);
-             */
-            //String tmp = " " + key + ", " + name + ", " + sdudentP + ", " + parentN1 + ", " + parentN2 + ", " + parentP1 + ", " + parentP2 + ", " + address + ", " + homeP + ", " + active;
-            String tmp = " " + name;
-            tbl.add(tmp);
-            Kil.add(key);
-            crsr.moveToNext();
+            //int col10 = crsr.getColumnIndex(Users.ACTIVE);
+            crsr.moveToFirst();
+            while (!crsr.isAfterLast()) {
+                int key = crsr.getInt(col1);
+                String name = crsr.getString(col2);
+                int activ = crsr.getInt(col10);
+                if (activ == 0) {
+                    String tmp = " " + name;
+                    tbl.add(tmp);
+                    Kil.add(key);
+                }
+                count++;
+                crsr.moveToNext();
+            }
+            crsr.close();
+            db.close();
+
+            namess=new String[count];
+
+            //=tbl;
+
+            Sname.setOnItemSelectedListener(this);
+            adp = new ArrayAdapter<String>(this, R.layout.support_simple_spinner_dropdown_item, tbl);
+            Sname.setAdapter(adp);
+
+            Sr.setOnItemSelectedListener(this);
+            ArrayAdapter<String> adp = new ArrayAdapter<String>(this, R.layout.support_simple_spinner_dropdown_item, revaim);
+            Sr.setAdapter(adp);
         }
-        crsr.close();
-        db.close();
-
-        Sname.setOnItemSelectedListener(this);
-        adp= new ArrayAdapter<String>(this, R.layout.support_simple_spinner_dropdown_item, tbl);
-        Sname.setAdapter(adp);
-
-        Sr.setOnItemSelectedListener(this);
-        ArrayAdapter<String> adp = new ArrayAdapter<String>(this, R.layout.support_simple_spinner_dropdown_item, revaim);
-        Sr.setAdapter(adp);
     }
 
     /**
@@ -127,6 +132,7 @@ public class ActivityGradeInput extends AppCompatActivity implements AdapterView
         else {
 
         ContentValues cv= new ContentValues();
+        cv.put(Grades.NAME, name);
         cv.put(Grades.SUBJECT, subject);
         cv.put(Grades.GRADE, grade);
         cv.put(Grades.GRADE, reva);
@@ -145,7 +151,10 @@ public class ActivityGradeInput extends AppCompatActivity implements AdapterView
     public void onItemSelected(AdapterView<?> parent, View view, int position, long id) {
 
         Spinner spinner = (Spinner) parent;
-        if (spinner.getId() == R.id.Sname) {
+        if (spinner.getId() == R.id.Sname){
+
+            kid=position;
+            //name = namess[position];
         }
 
         else if (spinner.getId() == R.id.Sr) {
@@ -185,6 +194,10 @@ public class ActivityGradeInput extends AppCompatActivity implements AdapterView
         String st = item.getTitle().toString();
         if (st.endsWith("Credits")) {
             Intent si = new Intent(this, creditsActivity.class);
+            startActivity(si);
+        }
+        else if (st.endsWith("information")) {
+            Intent si = new Intent(this, ActivityDataDisplay.class);
             startActivity(si);
         }
         else if (st.endsWith("Students information")) {

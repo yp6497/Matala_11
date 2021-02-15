@@ -14,7 +14,13 @@
 
         <Space
             android:layout_width="match_parent"
-            android:layout_height="73dp" />
+            android:layout_height="28dp" />
+
+        <TextView
+            android:id="@+id/textView14"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:text="       * לעידכון נתון, רשום אותו מחדש ולחץ על כפתור האישור" />
 
         <LinearLayout
             android:layout_width="match_parent"
@@ -22,7 +28,7 @@
             android:orientation="horizontal">
 
             <Space
-                android:layout_width="209dp"
+                android:layout_width="187dp"
                 android:layout_height="match_parent"
                 android:layout_weight="1" />
 
@@ -40,16 +46,21 @@
 
         <Space
             android:layout_width="match_parent"
-            android:layout_height="94dp" />
+            android:layout_height="50dp" />
 
         <LinearLayout
             android:layout_width="match_parent"
-            android:layout_height="match_parent"
+            android:layout_height="500dp"
             android:orientation="horizontal">
 
+            <Space
+                android:layout_width="wrap_content"
+                android:layout_height="405dp"
+                android:layout_weight="1" />
+
             <LinearLayout
-                android:layout_width="202dp"
-                android:layout_height="match_parent"
+                android:layout_width="170dp"
+                android:layout_height="500dp"
                 android:orientation="vertical">
 
                 <Space
@@ -122,13 +133,17 @@
             </LinearLayout>
 
             <Space
-                android:layout_width="26dp"
-                android:layout_height="match_parent"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
                 android:layout_weight="1" />
 
+            <Space
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content" />
+
             <LinearLayout
-                android:layout_width="202dp"
-                android:layout_height="match_parent"
+                android:layout_width="170dp"
+                android:layout_height="501dp"
                 android:orientation="vertical">
 
                 <Space
@@ -197,8 +212,54 @@
 
                 <Space
                     android:layout_width="match_parent"
-                    android:layout_height="wrap_content" />
+                    android:layout_height="37dp" />
+
+                <TextView
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:text="פעיל או לא פעיל?" />
+
+                <EditText
+                    android:id="@+id/activeOrNot"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:ems="10"
+                    android:inputType="textPersonName" />
+
             </LinearLayout>
+
+            <Space
+                android:layout_width="25dp"
+                android:layout_height="407dp" />
+
+        </LinearLayout>
+
+        <Space
+            android:layout_width="match_parent"
+            android:layout_height="26dp" />
+
+        <LinearLayout
+            android:layout_width="match_parent"
+            android:layout_height="37dp"
+            android:layout_weight="1"
+            android:orientation="horizontal">
+
+            <Space
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_weight="1" />
+
+            <Button
+                android:layout_width="20dp"
+                android:layout_height="40dp"
+                android:layout_weight="1"
+                android:onClick="update"
+                android:text="אישור" />
+
+            <Space
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_weight="1" />
         </LinearLayout>
 
     </LinearLayout>

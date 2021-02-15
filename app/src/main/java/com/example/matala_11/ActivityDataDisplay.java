@@ -2,6 +2,7 @@ package com.example.matala_11;
 
 import androidx.appcompat.app.AppCompatActivity;
 
+import android.content.ContentValues;
 import android.content.Intent;
 import android.database.Cursor;
 import android.database.sqlite.SQLiteDatabase;
@@ -13,9 +14,11 @@ import android.widget.AdapterView;
 import android.widget.ArrayAdapter;
 import android.widget.EditText;
 import android.widget.Spinner;
+import android.widget.Switch;
 
 import java.util.ArrayList;
 
+import static com.example.matala_11.Users.KEY_ID;
 import static com.example.matala_11.Users.TABLE_USERS;
 
 public class ActivityDataDisplay extends AppCompatActivity implements AdapterView.OnItemSelectedListener {
@@ -25,7 +28,7 @@ public class ActivityDataDisplay extends AppCompatActivity implements AdapterVie
     HelperDB hlp;
     Cursor crsr;
     Spinner Snames;
-    EditText Hphone, Address, Pphone1, parentN1,Pphone2,parentN2, SName,SPhone;
+    EditText Hphone, Address, Pphone1, ParentN1,Pphone2,ParentN2, SName,SPhone,activeOrNot;
 
     ArrayList<String> tbl = new ArrayList<>();
     ArrayAdapter adp;
@@ -42,10 +45,11 @@ public class ActivityDataDisplay extends AppCompatActivity implements AdapterVie
         db = hlp.getWritableDatabase();
         db.close();
 
+        activeOrNot=findViewById(R.id.activeOrNot);
         SName=findViewById(R.id.SName);
         SPhone=findViewById(R.id.SPhone);
-        parentN1=findViewById(R.id.parentN1);
-        parentN2=findViewById(R.id.parentN2);
+        ParentN1=findViewById(R.id.parentN1);
+        ParentN2=findViewById(R.id.parentN2);
         Pphone1=findViewById(R.id.Pphone1);
         Pphone2=findViewById(R.id.Pphone2);
         Address=findViewById(R.id.Address);
@@ -57,15 +61,23 @@ public class ActivityDataDisplay extends AppCompatActivity implements AdapterVie
         tbl.add("בחר תלמיד");
         crsr = db.query(TABLE_USERS, null, null,null, null, null,null);
 
-        int col1 = crsr.getColumnIndex(Users.KEY_ID);
+        int col1 = crsr.getColumnIndex(KEY_ID);
         int col2 = crsr.getColumnIndex(Users.NAME);
+        int col10 = crsr.getColumnIndex(Users.ACTIVE);
 
         crsr.moveToFirst();
         while (!crsr.isAfterLast()) {
             int key = crsr.getInt(col1);
             String name = crsr.getString(col2);
-            String tmp = " " + name;
-            tbl.add(tmp);
+            int activ= crsr.getInt(col10);
+            if(activ==1) {
+                String tmp = " " + name + " -לא פעיל";
+                tbl.add(tmp);
+            }
+            else {
+                String tmp = " " + name;
+                tbl.add(tmp);
+            }
             Kil.add(key);
             crsr.moveToNext();
         }
@@ -85,46 +97,78 @@ public class ActivityDataDisplay extends AppCompatActivity implements AdapterVie
     @Override
     public void onItemSelected(AdapterView<?> parent, View view, int position, long id) {
 
-        db = hlp.getWritableDatabase();
-       // tbl = new ArrayList<>();
-        crsr = db.query(TABLE_USERS, null, null,null, null, null,null);
+        if(position==0) {
 
-        int col1 = crsr.getColumnIndex(Users.KEY_ID);
-        int col2 = crsr.getColumnIndex(Users.NAME);
-        int col3 = crsr.getColumnIndex(Users.STUDENT_PHONE);
-        int col4 = crsr.getColumnIndex(Users.PARENT_NAME_1);
-        int col5 = crsr.getColumnIndex(Users.PARENT_NAME_2);
-        int col6 = crsr.getColumnIndex(Users.PARENT_PHONE_1);
-        int col7 = crsr.getColumnIndex(Users.PARENT_PHONE_2);
-        int col8 = crsr.getColumnIndex(Users.ADDRESS);
-        int col9 = crsr.getColumnIndex(Users.HOME_PHONE);
-        int col10 = crsr.getColumnIndex(Users.ACTIVE);
-
-        crsr.moveToFirst();
-        while (!crsr.isAfterLast()) {
-            int key = crsr.getInt(col1);
-            String name = crsr.getString(col2);
-            String sdudentP = crsr.getString(col3);
-            String parentN1 = crsr.getString(col4);
-            String parentN2 = crsr.getString(col5);
-            String parentP1 = crsr.getString(col6);
-            String parentP2 = crsr.getString(col7);
-            String address = crsr.getString(col8);
-            String homeP = crsr.getString(col9);
-            int active = crsr.getInt(col10);
-
-            //String tmp = " " + key + ", " + name + ", " + sdudentP + ", " + parentN1 + ", " + parentN2 + ", " + parentP1 + ", " + parentP2 + ", " + address + ", " + homeP + ", " + active;
-            //String tmp = " " + name
-            //SName.setText(Kil(key));
-            crsr.moveToNext();
+            SName.setText("");
+            Hphone.setText("");
+            Address.setText("");
+            Pphone1.setText("");
+            ParentN1.setText("");
+            Pphone2.setText("");
+            ParentN2.setText("");
+            SPhone.setText("");
         }
-        crsr.close();
-        db.close();
+
+        else{
+                int idS = position;
+                db = hlp.getWritableDatabase();
+                //tbl = new ArrayList<>();
+                crsr = db.query(TABLE_USERS, null, null, null, null, null, null);
+
+                int col1 = crsr.getColumnIndex(KEY_ID);
+                int col2 = crsr.getColumnIndex(Users.NAME);
+                int col3 = crsr.getColumnIndex(Users.STUDENT_PHONE);
+                int col4 = crsr.getColumnIndex(Users.PARENT_NAME_1);
+                int col5 = crsr.getColumnIndex(Users.PARENT_NAME_2);
+                int col6 = crsr.getColumnIndex(Users.PARENT_PHONE_1);
+                int col7 = crsr.getColumnIndex(Users.PARENT_PHONE_2);
+                int col8 = crsr.getColumnIndex(Users.ADDRESS);
+                int col9 = crsr.getColumnIndex(Users.HOME_PHONE);
+                int col10 = crsr.getColumnIndex(Users.ACTIVE);
+
+                crsr.moveToFirst();
+                while (!crsr.isAfterLast()) {
+                    int key = crsr.getInt(col1);
+                    String name = crsr.getString(col2);
+                    String sdudentP = crsr.getString(col3);
+                    String parentN1 = crsr.getString(col4);
+                    String parentN2 = crsr.getString(col5);
+                    String parentP1 = crsr.getString(col6);
+                    String parentP2 = crsr.getString(col7);
+                    String address = crsr.getString(col8);
+                    String homeP = crsr.getString(col9);
+                    int active = crsr.getInt(col10);
+                    //if (idS == key) {
+                    SName.setText(name);
+                    SPhone.setText(sdudentP);
+                    ParentN1.setText(parentN1);
+                    Pphone1.setText(parentP1);
+                    ParentN2.setText(parentN2);
+                    Pphone2.setText(parentP2);
+                    Address.setText(address);
+                    Hphone.setText(homeP);
+                    if(active==0) activeOrNot.setText("פעיל");
+                    else  activeOrNot.setText("לא פעיל");
+
+                    crsr.moveToNext();
+                }
+                crsr.close();
+                db.close();
+            }
 
     }
 
     @Override
     public void onNothingSelected(AdapterView<?> parent) {
+
+    }
+
+    /**
+     * description- Updates the data
+     */
+    public void update(View view) {
+
+        //db.delete(TABLE_USERS, KEY_ID+"=?", new String[]{Integer.toString(Hphone)};
 
     }
 
@@ -146,12 +190,17 @@ public class ActivityDataDisplay extends AppCompatActivity implements AdapterVie
     public boolean onOptionsItemSelected(MenuItem item) {
 
         String st = item.getTitle().toString();
+
+        if (st.endsWith("Students information")) {
+            Intent si = new Intent(this, MainActivity.class);
+            startActivity(si);
+        }
         if (st.endsWith("Credits")) {
             Intent si = new Intent(this, creditsActivity.class);
             startActivity(si);
         }
         else if (st.endsWith("Grades")) {
-            Intent si = new Intent(this, MainActivity.class);
+            Intent si = new Intent(this, ActivityGradeInput.class);
             startActivity(si);
         }
         else if (st.endsWith("Filtering and sorting")) {
@@ -160,4 +209,6 @@ public class ActivityDataDisplay extends AppCompatActivity implements AdapterVie
         }
         return true;
     }
+
+
 }

@@ -33,7 +33,7 @@ public class MainActivity extends AppCompatActivity {
     HelperDB hlp;
 
     Switch sw;
-    int s;
+    int s; //active or not
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -54,6 +54,8 @@ public class MainActivity extends AppCompatActivity {
         hlp = new HelperDB(this);
         db = hlp.getWritableDatabase();
         db.close();
+
+        s=1;
     }
 
     /**
