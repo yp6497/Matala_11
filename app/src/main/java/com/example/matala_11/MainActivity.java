@@ -94,6 +94,14 @@ public class MainActivity extends AppCompatActivity {
             db.insert(Users.TABLE_USERS, null, cv);
             db.close();
 
+            nameE.setText("");
+            studentPE.setText("");
+            parentName1E.setText("");
+            parentName2E.setText("");
+            parentP1E.setText("");
+            parentP2E.setText("");
+            addressE.setText("");
+            homePE.setText("");
         }
     //}
 
@@ -130,19 +138,19 @@ public class MainActivity extends AppCompatActivity {
     public boolean onOptionsItemSelected(MenuItem item) {
 
         String st = item.getTitle().toString();
-        if (st.endsWith("Credits")) {
+        if (st.endsWith("קרדיטים")) {
             Intent si = new Intent(this, creditsActivity.class);
             startActivity(si);
         }
-        if (st.endsWith("Grades")) {
+        if (st.endsWith("קליטת ציונים")) {
             Intent si = new Intent(this, ActivityGradeInput.class);
             startActivity(si);
         }
-        else if (st.endsWith("Filtering and sorting")) {
+        else if (st.endsWith("נתוני הציונים")) {
             Intent si = new Intent(this, ActivityFilteringSorting.class);
             startActivity(si);
         }
-        else if (st.endsWith("information")) {
+        else if (st.endsWith("נתוני התלמידים")) {
             Intent si = new Intent(this, ActivityDataDisplay.class);
             startActivity(si);
         }

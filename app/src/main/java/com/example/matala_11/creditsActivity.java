@@ -39,15 +39,19 @@ public class creditsActivity extends AppCompatActivity {
     public boolean onOptionsItemSelected(MenuItem item) {
 
         String st = item.getTitle().toString();
-        if (st.endsWith("Grades")) {
-            Intent si = new Intent(this, creditsActivity.class);
-            startActivity(si);
-        }
-        if (st.endsWith("Students information")) {
+        if (st.endsWith("קליטת נתונים")) {
             Intent si = new Intent(this, MainActivity.class);
             startActivity(si);
         }
-        else if (st.endsWith("Filtering and sorting")) {
+        else if (st.endsWith("נתוני התלמידים")) {
+            Intent si = new Intent(this, ActivityDataDisplay.class);
+            startActivity(si);
+        }
+        else if (st.endsWith("קליטת ציונים")) {
+            Intent si = new Intent(this, ActivityGradeInput.class);
+            startActivity(si);
+        }
+        else if (st.endsWith("נתוני הציונים")) {
             Intent si = new Intent(this, ActivityFilteringSorting.class);
             startActivity(si);
         }

@@ -5,6 +5,7 @@ import android.database.sqlite.SQLiteDatabase;
 import android.database.sqlite.SQLiteOpenHelper;
 
 import static com.example.matala_11.Grades.GRADE;
+import static com.example.matala_11.Grades.REVA;
 import static com.example.matala_11.Grades.SUBJECT;
 import static com.example.matala_11.Grades.TABLE_GRADES;
 import static com.example.matala_11.Users.ACTIVE;
@@ -49,8 +50,9 @@ public class HelperDB extends SQLiteOpenHelper {
 
         strCreate="CREATE TABLE "+TABLE_GRADES;
         strCreate+=" ("+KEY_ID+" INTEGER PRIMARY KEY,";
-        strCreate+=" "+NAME+" TEXT,";
+        //strCreate+=" "+NAME+" TEXT,";
         strCreate+=" "+SUBJECT+" TEXT,";
+        strCreate+=" "+REVA+" TEXT,";
         strCreate+=" "+GRADE+" INTEGER";
         strCreate+=");";
         db.execSQL(strCreate);

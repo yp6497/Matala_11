@@ -22,8 +22,12 @@ import java.util.ArrayList;
 import static com.example.matala_11.Users.KEY_ID;
 import static com.example.matala_11.Users.TABLE_USERS;
 
+
 /**
- * The type Activity grade input.
+ * @author Yulia Piavka <yp6497@bs.amalnet.k12.il>
+ * @version 1.1
+ * @since 12/1/2020
+ * short description-
  */
 public class ActivityGradeInput extends AppCompatActivity implements AdapterView.OnItemSelectedListener {
 
@@ -32,18 +36,19 @@ public class ActivityGradeInput extends AppCompatActivity implements AdapterView
     HelperDB hlp;
     Cursor crsr;
 
+    //ArrayList<String> subjects = new ArrayList<>();
     ArrayList<String> tbl = new ArrayList<>();
     ArrayAdapter adp;
     ArrayList<Integer> Kil = new ArrayList<Integer>();
     Spinner Sr,Sname;
-    String subject, grade, reva,name;
+    String subject, grade, reva;
     EditText edSubject, /**
      * Which subject the grade related to.
      */
     edGrade; /**
      * The grade.
      */
-    int count=0,kid;
+    int count=0,kid,pos;
     String[] namess=null;
     String [] revaim= {"רבע ראשון","רבע שני","רבע שלישי","רבע רביעי"};
 
@@ -54,7 +59,6 @@ public class ActivityGradeInput extends AppCompatActivity implements AdapterView
 
         edSubject = findViewById(R.id.edSubject);
         edGrade = findViewById(R.id.edGrade);
-        //edName= findViewById(R.id.edName);
         Sr = findViewById(R.id.Sr);
         Sname = findViewById(R.id.Sname);
 
@@ -72,7 +76,7 @@ public class ActivityGradeInput extends AppCompatActivity implements AdapterView
         tbl.add("בחר תלמיד");
         crsr = db.query(TABLE_USERS, null, null, null, null, null, null);
 
-        int col1 = crsr.getColumnIndex(Users.KEY_ID);
+        //int col1 = crsr.getColumnIndex(Users.KEY_ID);
         int col2 = crsr.getColumnIndex(Users.NAME);
 
         /*
@@ -86,30 +90,24 @@ public class ActivityGradeInput extends AppCompatActivity implements AdapterView
          */
         int col10 = crsr.getColumnIndex(Users.ACTIVE);
 
-
         crsr.moveToFirst();
         while (!crsr.isAfterLast()) {
-            //int col10 = crsr.getColumnIndex(Users.ACTIVE);
-            crsr.moveToFirst();
-            while (!crsr.isAfterLast()) {
-                int key = crsr.getInt(col1);
-                String name = crsr.getString(col2);
-                int activ = crsr.getInt(col10);
-                if (activ == 0) {
-                    String tmp = " " + name;
-                    tbl.add(tmp);
-                    Kil.add(key);
-                }
-                count++;
-                crsr.moveToNext();
+            //int key = crsr.getInt(col1);
+            String name = crsr.getString(col2);
+            int activ = crsr.getInt(col10);
+            if (activ == 0) {
+                String tmp = " " + name;
+                tbl.add(tmp);
+                //Kil.add(key);
             }
-            crsr.close();
-            db.close();
+            //count++;
+             crsr.moveToNext();
+        }
+        crsr.close();
+        db.close();
 
-            namess=new String[count];
-
+            //namess=new String[count];
             //=tbl;
-
             Sname.setOnItemSelectedListener(this);
             adp = new ArrayAdapter<String>(this, R.layout.support_simple_spinner_dropdown_item, tbl);
             Sname.setAdapter(adp);
@@ -117,30 +115,41 @@ public class ActivityGradeInput extends AppCompatActivity implements AdapterView
             Sr.setOnItemSelectedListener(this);
             ArrayAdapter<String> adp = new ArrayAdapter<String>(this, R.layout.support_simple_spinner_dropdown_item, revaim);
             Sr.setAdapter(adp);
-        }
+
     }
 
     /**
-     *
+     * description-
      * @param view the view
      */
     public void approval(View view) {
 
-        if(edSubject==null || edGrade==null){
+        //Sname.setOnItemSelectedListener(this);
+        //adp = new ArrayAdapter<String>(this, R.layout.support_simple_spinner_dropdown_item, tbl);
+        //Sname.setAdapter(adp);
+
+        Sr.setOnItemSelectedListener(this);
+        ArrayAdapter<String> adp = new ArrayAdapter<String>(this, R.layout.support_simple_spinner_dropdown_item, revaim);
+        Sr.setAdapter(adp);
+
+        if(edSubject==null || edGrade==null || pos==0){
+
             Toast.makeText(this, "please enter all the", Toast.LENGTH_SHORT).show();
         }
         else {
 
-        ContentValues cv= new ContentValues();
-        cv.put(Grades.NAME, name);
-        cv.put(Grades.SUBJECT, subject);
-        cv.put(Grades.GRADE, grade);
-        cv.put(Grades.GRADE, reva);
+            ContentValues cv= new ContentValues();
+            //cv.put(Grades.NAME, name);
+            cv.put(Grades.SUBJECT, subject);
+            cv.put(Grades.REVA, reva);
+            cv.put(Grades.GRADE, grade);
 
-        db = hlp.getWritableDatabase();
-        db.insert(Grades.TABLE_GRADES, null, cv);
-        db.close();
+            db = hlp.getWritableDatabase();
+            db.insert(Grades.TABLE_GRADES, null, cv);
+            db.close();
 
+            edSubject.setText("");
+            edGrade.setText("");
         }
     }
 
@@ -153,7 +162,9 @@ public class ActivityGradeInput extends AppCompatActivity implements AdapterView
         Spinner spinner = (Spinner) parent;
         if (spinner.getId() == R.id.Sname){
 
-            kid=position;
+            pos=position;
+
+            //=position;
             //name = namess[position];
         }
 
@@ -192,23 +203,25 @@ public class ActivityGradeInput extends AppCompatActivity implements AdapterView
     public boolean onOptionsItemSelected(MenuItem item) {
 
         String st = item.getTitle().toString();
-        if (st.endsWith("Credits")) {
+        if (st.endsWith("קרדיטים")) {
             Intent si = new Intent(this, creditsActivity.class);
             startActivity(si);
         }
-        else if (st.endsWith("information")) {
+        else if (st.endsWith("נתוני התלמידים")) {
             Intent si = new Intent(this, ActivityDataDisplay.class);
             startActivity(si);
         }
-        else if (st.endsWith("Students information")) {
+        else if (st.endsWith("קליטת נתונים")) {
             Intent si = new Intent(this, MainActivity.class);
             startActivity(si);
         }
-        else if (st.endsWith("Filtering and sorting")) {
+        else if (st.endsWith("נתוני הציונים")) {
             Intent si = new Intent(this, ActivityFilteringSorting.class);
             startActivity(si);
         }
         return true;
     }
+
+
 }
 
