@@ -48,7 +48,7 @@ public class ActivityGradeInput extends AppCompatActivity implements AdapterView
     edGrade; /**
      * The grade.
      */
-    int count=0,kid,pos;
+    int count=0,kid,pos,nameid;
     String[] namess=null;
     String [] revaim= {"רבע ראשון","רבע שני","רבע שלישי","רבע רביעי"};
 
@@ -78,16 +78,6 @@ public class ActivityGradeInput extends AppCompatActivity implements AdapterView
 
         //int col1 = crsr.getColumnIndex(Users.KEY_ID);
         int col2 = crsr.getColumnIndex(Users.NAME);
-
-        /*
-        int col3 = crsr.getColumnIndex(Users.STUDENT_PHONE);
-        int col4 = crsr.getColumnIndex(Users.PARENT_NAME_1);
-        int col5 = crsr.getColumnIndex(Users.PARENT_NAME_2);
-        int col6 = crsr.getColumnIndex(Users.PARENT_PHONE_1);
-        int col7 = crsr.getColumnIndex(Users.PARENT_PHONE_2);
-        int col8 = crsr.getColumnIndex(Users.ADDRESS);
-        int col9 = crsr.getColumnIndex(Users.HOME_PHONE);
-         */
         int col10 = crsr.getColumnIndex(Users.ACTIVE);
 
         crsr.moveToFirst();
@@ -98,9 +88,7 @@ public class ActivityGradeInput extends AppCompatActivity implements AdapterView
             if (activ == 0) {
                 String tmp = " " + name;
                 tbl.add(tmp);
-                //Kil.add(key);
             }
-            //count++;
              crsr.moveToNext();
         }
         crsr.close();
@@ -124,22 +112,18 @@ public class ActivityGradeInput extends AppCompatActivity implements AdapterView
      */
     public void approval(View view) {
 
-        //Sname.setOnItemSelectedListener(this);
-        //adp = new ArrayAdapter<String>(this, R.layout.support_simple_spinner_dropdown_item, tbl);
-        //Sname.setAdapter(adp);
-
         Sr.setOnItemSelectedListener(this);
         ArrayAdapter<String> adp = new ArrayAdapter<String>(this, R.layout.support_simple_spinner_dropdown_item, revaim);
         Sr.setAdapter(adp);
 
         if(edSubject==null || edGrade==null || pos==0){
 
-            Toast.makeText(this, "please enter all the", Toast.LENGTH_SHORT).show();
+            Toast.makeText(this, "בבקשה הכנס את כל הנתונים", Toast.LENGTH_SHORT).show();
         }
         else {
 
             ContentValues cv= new ContentValues();
-            //cv.put(Grades.NAME, name);
+            cv.put(Grades.NAMEID, pos);
             cv.put(Grades.SUBJECT, subject);
             cv.put(Grades.REVA, reva);
             cv.put(Grades.GRADE, grade);
@@ -161,9 +145,8 @@ public class ActivityGradeInput extends AppCompatActivity implements AdapterView
 
         Spinner spinner = (Spinner) parent;
         if (spinner.getId() == R.id.Sname){
-
             pos=position;
-
+            //idS = position;
             //=position;
             //name = namess[position];
         }

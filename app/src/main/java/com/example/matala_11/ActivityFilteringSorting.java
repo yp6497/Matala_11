@@ -78,9 +78,20 @@ public class ActivityFilteringSorting extends AppCompatActivity implements Adapt
         SSort.setOnItemSelectedListener(this);
         adp = new ArrayAdapter<String>(this, R.layout.support_simple_spinner_dropdown_item, sort);
         SSort.setAdapter(adp);
-
-
     }
+
+
+    /**
+     * param @view
+     * description- creates menu.
+     */
+    public void approval(View view) {
+
+        if(posSf==2){
+
+        }
+    }
+
 
     /**
      * description- creates menu.
@@ -89,7 +100,6 @@ public class ActivityFilteringSorting extends AppCompatActivity implements Adapt
     public void onItemSelected(AdapterView<?> parent, View view, int position, long id) {
 
         Spinner spinner = (Spinner) parent;
-
 
         if (spinner.getId() == R.id.SFilter) {
 
@@ -139,6 +149,7 @@ public class ActivityFilteringSorting extends AppCompatActivity implements Adapt
                  */
                 else if (position == 2) {
 
+                    Esubject.setText("הכנס מקצוע");
                     SNames.setAdapter(null);
                 }
 
@@ -152,7 +163,6 @@ public class ActivityFilteringSorting extends AppCompatActivity implements Adapt
                     SNames.setAdapter(adp);
                 }
             }
-        //}
         else if(spinner.getId() == R.id.SSort){
 
             posSs=position;
@@ -218,5 +228,4 @@ public class ActivityFilteringSorting extends AppCompatActivity implements Adapt
         }
         return true;
     }
-
 }

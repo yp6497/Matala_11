@@ -15,6 +15,7 @@ import android.widget.ArrayAdapter;
 import android.widget.EditText;
 import android.widget.Spinner;
 import android.widget.Switch;
+import android.widget.Toast;
 
 import java.util.ArrayList;
 
@@ -35,7 +36,7 @@ public class ActivityDataDisplay extends AppCompatActivity implements AdapterVie
     HelperDB hlp;
     Cursor crsr;
     Spinner Snames,ActiveOrNot;
-    EditText Hphone, Address, Pphone1, ParentN1,Pphone2,ParentN2, SName,SPhone,activeOrNot;
+    EditText Hphone, Address, Pphone1, ParentN1,Pphone2,ParentN2, SName,SPhone;
 
     ArrayList<String> tbl = new ArrayList<>();
     ArrayAdapter adp;
@@ -43,10 +44,11 @@ public class ActivityDataDisplay extends AppCompatActivity implements AdapterVie
 
     int[]kil;
     String[] activeArr={"פעיל","לא פעיל"};
-    String[] notactiveArr={"פעיל","לא פעיל"};
+    String[] notactiveArr={"לא פעיל","פעיל"};
     String oldName,id="1";
-    String SNAME,SPHONE,ADDRESS, HOMEP, PARENTN1,PARENTN2,PPHONE1,PPHONE2,ACTIVEORNOT;
-    int pos,a;//active or not
+    String SNAME,SPHONE,ADDRESS, HOMEP, PARENTN1,PARENTN2,PPHONE1,PPHONE2;
+    int pos,idS,a;//active or not
+    boolean AOrN;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -68,16 +70,86 @@ public class ActivityDataDisplay extends AppCompatActivity implements AdapterVie
         Hphone=findViewById(R.id.HPhone);
         Snames= findViewById(R.id.Snames);
 
-       // oldName=SName.getText().toString();
+        printArrayNames();
+    }
+
+
+    /**
+     * puts all the student information in fileds.
+     */
+    public void printInfo() {
+
+        db = hlp.getWritableDatabase();
+        crsr = db.query(TABLE_USERS, null, null, null, null, null, null);
+
+        int col1 = crsr.getColumnIndex(KEY_ID);
+        int col2 = crsr.getColumnIndex(Users.NAME);
+        int col3 = crsr.getColumnIndex(Users.STUDENT_PHONE);
+        int col4 = crsr.getColumnIndex(Users.PARENT_NAME_1);
+        int col5 = crsr.getColumnIndex(Users.PARENT_NAME_2);
+        int col6 = crsr.getColumnIndex(Users.PARENT_PHONE_1);
+        int col7 = crsr.getColumnIndex(Users.PARENT_PHONE_2);
+        int col8 = crsr.getColumnIndex(Users.ADDRESS);
+        int col9 = crsr.getColumnIndex(Users.HOME_PHONE);
+        int col10 = crsr.getColumnIndex(Users.ACTIVE);
+
+        crsr.moveToFirst();
+        while (!crsr.isAfterLast()) {
+            int key = crsr.getInt(col1);
+            String name = crsr.getString(col2);
+            String sdudentP = crsr.getString(col3);
+            String parentN1 = crsr.getString(col4);
+            String parentN2 = crsr.getString(col5);
+            String parentP1 = crsr.getString(col6);
+            String parentP2 = crsr.getString(col7);
+            String address = crsr.getString(col8);
+            String homeP = crsr.getString(col9);
+            int active = crsr.getInt(col10);
+
+            if (idS == key) {
+
+                SName.setText(name);
+                SPhone.setText(sdudentP);
+                ParentN1.setText(parentN1);
+                Pphone1.setText(parentP1);
+                ParentN2.setText(parentN2);
+                Pphone2.setText(parentP2);
+                Address.setText(address);
+                Hphone.setText(homeP);
+
+                /**
+                 * Selects the array according to the active or not data and places it in the spinner.
+                 */
+                ActiveOrNot.setOnItemSelectedListener(this);
+                if(active==0) AOrN=true;
+                else if(active==1) AOrN=false;
+                if (AOrN == true) {
+                    adp = new ArrayAdapter<String>(this, R.layout.support_simple_spinner_dropdown_item, activeArr);
+                    ActiveOrNot.setAdapter(adp);
+                }
+
+                else {
+                    adp = new ArrayAdapter<String>(this, R.layout.support_simple_spinner_dropdown_item, notactiveArr);
+                    ActiveOrNot.setAdapter(adp);
+                }
+            }
+            crsr.moveToNext();
+        }
+        crsr.close();
+        db.close();
+    }
+
+
+    /**
+     * description- Prints the list of student names in the spinner.
+     */
+    public void printArrayNames() {
 
         db = hlp.getWritableDatabase();
         tbl = new ArrayList<>();
         tbl.add("בחר תלמיד");
         crsr = db.query(TABLE_USERS, null, null,null, null, null,null);
 
-        /**
-         * prints names
-         */
         int col1 = crsr.getColumnIndex(KEY_ID);
         int col2 = crsr.getColumnIndex(Users.NAME);
         int col10 = crsr.getColumnIndex(Users.ACTIVE);
@@ -100,13 +172,11 @@ public class ActivityDataDisplay extends AppCompatActivity implements AdapterVie
         }
         crsr.close();
         db.close();
-
-        //kil=Kil;
         Snames.setOnItemSelectedListener(this);
         adp= new ArrayAdapter<String>(this, R.layout.support_simple_spinner_dropdown_item, tbl);
         Snames.setAdapter(adp);
-
     }
+
 
     /**
      * description- Which reva is selected.
@@ -116,12 +186,14 @@ public class ActivityDataDisplay extends AppCompatActivity implements AdapterVie
 
         Spinner spinner = (Spinner) parent;
 
-
         if (spinner.getId() == R.id.Snames) {
             pos = position;
-            if (position == 0) {
+            if(position == 0) {
 
-                SName.setText(""); //לעשות מזה פעולה?
+                /**
+                 * Deletes all data from the EditTexts.
+                 */
+                SName.setText("");
                 Hphone.setText("");
                 Address.setText("");
                 Pphone1.setText("");
@@ -129,87 +201,49 @@ public class ActivityDataDisplay extends AppCompatActivity implements AdapterVie
                 Pphone2.setText("");
                 ParentN2.setText("");
                 SPhone.setText("");
-            } else {
-                int idS = position;
-                db = hlp.getWritableDatabase();
-                //tbl = new ArrayList<>();
-                crsr = db.query(TABLE_USERS, null, null, null, null, null, null);
 
-                int col1 = crsr.getColumnIndex(KEY_ID);
-                int col2 = crsr.getColumnIndex(Users.NAME);
-                int col3 = crsr.getColumnIndex(Users.STUDENT_PHONE);
-                int col4 = crsr.getColumnIndex(Users.PARENT_NAME_1);
-                int col5 = crsr.getColumnIndex(Users.PARENT_NAME_2);
-                int col6 = crsr.getColumnIndex(Users.PARENT_PHONE_1);
-                int col7 = crsr.getColumnIndex(Users.PARENT_PHONE_2);
-                int col8 = crsr.getColumnIndex(Users.ADDRESS);
-                int col9 = crsr.getColumnIndex(Users.HOME_PHONE);
-                int col10 = crsr.getColumnIndex(Users.ACTIVE);
-
-                crsr.moveToFirst();
-                while (!crsr.isAfterLast()) {
-                    int key = crsr.getInt(col1);
-                    String name = crsr.getString(col2);
-                    String sdudentP = crsr.getString(col3);
-                    String parentN1 = crsr.getString(col4);
-                    String parentN2 = crsr.getString(col5);
-                    String parentP1 = crsr.getString(col6);
-                    String parentP2 = crsr.getString(col7);
-                    String address = crsr.getString(col8);
-                    String homeP = crsr.getString(col9);
-                    int active = crsr.getInt(col10);
-                    if (idS == key) {
-                        SName.setText(name);
-                        SPhone.setText(sdudentP);
-                        ParentN1.setText(parentN1);
-                        Pphone1.setText(parentP1);
-                        ParentN2.setText(parentN2);
-                        Pphone2.setText(parentP2);
-                        Address.setText(address);
-                        Hphone.setText(homeP);
-                        ActiveOrNot.setOnItemSelectedListener(this);
-                        if(active==0) {
-                            adp = new ArrayAdapter<String>(this, R.layout.support_simple_spinner_dropdown_item, activeArr);
-                            ActiveOrNot.setAdapter(adp);
-                        }
-                        else {
-                            adp = new ArrayAdapter<String>(this, R.layout.support_simple_spinner_dropdown_item, notactiveArr);
-                            ActiveOrNot.setAdapter(adp);
-                        }
-                    }
-                    crsr.moveToNext();
-                }
-                crsr.close();
-                db.close();
+         } else {
+                idS = position;
+                printInfo();
             }
-        }
-        else{
-            if(position==0) a=0;
-            else a=1;
+        } else {
+            /**
+             * puts the value in the variable according to the new selection. a=0: active, a=1: not active.
+             */
+            if (AOrN == true) {
+
+                if (position == 0) a = 0;
+                else  a = 1;
+
+            } else {
+
+                if (position == 0) a = 1;
+                else  a = 0;
+            }
         }
     }
 
     @Override
     public void onNothingSelected(AdapterView<?> parent) {
-
     }
+
 
     /**
      * description- Updates the data
      */
     public void update(View view) {
 
-        SNAME=SName.getText().toString();
+        SNAME = SName.getText().toString();
         SPHONE = SPhone.getText().toString();
-        ADDRESS= Address.getText().toString();
+        ADDRESS = Address.getText().toString();
         HOMEP = Hphone.getText().toString();
-        PARENTN1= ParentN1.getText().toString();
-        PARENTN2= ParentN2.getText().toString();
-        PPHONE1= Pphone1.getText().toString();
-        PPHONE2= Pphone2.getText().toString();
+        PARENTN1 = ParentN1.getText().toString();
+        PARENTN2 = ParentN2.getText().toString();
+        PPHONE1 = Pphone1.getText().toString();
+        PPHONE2 = Pphone2.getText().toString();
 
         ContentValues cv = new ContentValues();
-        db=hlp.getWritableDatabase();
+        db = hlp.getWritableDatabase();
         cv.put(Users.NAME, SNAME);
         cv.put(Users.STUDENT_PHONE, SPHONE);
         cv.put(Users.PARENT_NAME_1, PARENTN1);
@@ -219,41 +253,11 @@ public class ActivityDataDisplay extends AppCompatActivity implements AdapterVie
         cv.put(Users.ADDRESS, ADDRESS);
         cv.put(Users.HOME_PHONE, HOMEP);
         cv.put(Users.ACTIVE, a);
-        db.update(TABLE_USERS, cv, "_id = ?", new String[]{String.valueOf(pos)}); //אחרי שמעדכנים את פעיל לא פעיל- לשנות את הספינר עוד הפעם
+        db.update(TABLE_USERS, cv, "_id = ?", new String[]{String.valueOf(pos)});
         db.close();
 
-        db = hlp.getWritableDatabase();
-        tbl = new ArrayList<>();
-        tbl.add("בחר תלמיד");
-        crsr = db.query(TABLE_USERS, null, null,null, null, null,null);
-
-        int col2 = crsr.getColumnIndex(Users.NAME);
-        int col10 = crsr.getColumnIndex(Users.ACTIVE);
-
-        crsr.moveToFirst();
-        while (!crsr.isAfterLast()) {
-            String name = crsr.getString(col2);
-            int activ= crsr.getInt(col10);
-            if(activ==1) {
-                String tmp = " " + name + " -לא פעיל";
-                tbl.add(tmp);
-            }
-            else {
-                String tmp = " " + name;
-                tbl.add(tmp);
-            }
-            crsr.moveToNext();
-        }
-        crsr.close();
-        db.close();
-
-        //kil=Kil;
-        Snames.setOnItemSelectedListener(this);
-        adp= new ArrayAdapter<String>(this, R.layout.support_simple_spinner_dropdown_item, tbl);
-        Snames.setAdapter(adp);
-
-
-
+        ActiveOrNot.setAdapter(null);
+        printArrayNames();
     }
 
 
@@ -293,6 +297,4 @@ public class ActivityDataDisplay extends AppCompatActivity implements AdapterVie
         }
         return true;
     }
-
-
 }
