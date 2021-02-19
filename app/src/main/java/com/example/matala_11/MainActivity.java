@@ -32,7 +32,7 @@ public class MainActivity extends AppCompatActivity {
     SQLiteDatabase db;
     HelperDB hlp;
 
-    Switch sw;
+    Switch sw; //
     int s; //active or not
 
     @Override
