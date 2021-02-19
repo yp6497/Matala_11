@@ -49,7 +49,7 @@ public class ActivityFilteringSorting extends AppCompatActivity implements Adapt
     ArrayAdapter adp;
     EditText Esubject;
     String [] revaim= {"רבע ראשון","רבע שני","רבע שלישי","רבע רביעי"};
-    int posSf,posSs;
+    int posSf,posSs,count;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -88,6 +88,7 @@ public class ActivityFilteringSorting extends AppCompatActivity implements Adapt
     public void approval(View view) {
 
         if(posSf==2){
+            count++;
 
         }
     }
