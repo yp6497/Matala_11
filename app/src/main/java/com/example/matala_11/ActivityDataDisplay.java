@@ -27,7 +27,7 @@ import static com.example.matala_11.Users.TABLE_USERS;
  * @author Yulia Piavka <yp6497@bs.amalnet.k12.il>
  * @version 1.1
  * @since 12/1/2020
- * short description-
+ * short description- Displays the data of the selected student
  */
 public class ActivityDataDisplay extends AppCompatActivity implements AdapterView.OnItemSelectedListener {
 
@@ -45,7 +45,6 @@ public class ActivityDataDisplay extends AppCompatActivity implements AdapterVie
     int[]kil;
     String[] activeArr={"פעיל","לא פעיל"};
     String[] notactiveArr={"לא פעיל","פעיל"};
-    String oldName,id="1";
     String SNAME,SPHONE,ADDRESS, HOMEP, PARENTN1,PARENTN2,PPHONE1,PPHONE2;
     int pos,idS,a;//active or not
     boolean AOrN;

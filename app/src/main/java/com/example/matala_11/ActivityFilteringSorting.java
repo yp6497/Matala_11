@@ -27,7 +27,7 @@ import static com.example.matala_11.Users.TABLE_USERS;
  * @author Yulia Piavka <yp6497@bs.amalnet.k12.il>
  * @version 1.1
  * @since 12/1/2020
- * short description-
+ * short description- The grades are displayed in the way the user selects.
  */
 public class ActivityFilteringSorting extends AppCompatActivity implements AdapterView.OnItemClickListener, AdapterView.OnItemSelectedListener  {
 
@@ -36,20 +36,14 @@ public class ActivityFilteringSorting extends AppCompatActivity implements Adapt
     Cursor crsr;
 
     ArrayList<String> tbl = new ArrayList<>();
-    ArrayList<Integer> Kil = new ArrayList<Integer>();
     ListView lv;
-    TextView tv,tv2;
-    String[] names= {"a","b","c","d","e"};
-    String[] subjects= {"aנ","bנ","cנ","dנ","eנ"};
-    String[] reva= {"רבע ראשון","רבע ראשון","רבע ראשון","רבע ראשון","רבע ראשון"};
-    String[] gardes= {"100","89","78","34","4"};
-    String[] filter={"ציונים לפי:","תלמיד","מקצוע","רבע"};
-    String[] sort={"ציונים באופן:","ברירת מחדל","עולה","יורד"};
     Spinner SFilter, SSort,SNames;
     ArrayAdapter adp;
     EditText Esubject;
+    String[] filter={"ציונים לפי:","תלמיד","מקצוע","רבע"};
+    String[] sort={"ציונים באופן:","ברירת מחדל","עולה","יורד"};
     String [] revaim= {"רבע ראשון","רבע שני","רבע שלישי","רבע רביעי"};
-    int posSf,posSs,count;
+    int posSf,posSs;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -70,7 +64,6 @@ public class ActivityFilteringSorting extends AppCompatActivity implements Adapt
         lv.setOnItemClickListener(this);
         lv.setChoiceMode(ListView.CHOICE_MODE_SINGLE);
 
-
         SFilter.setOnItemSelectedListener(this);
         adp = new ArrayAdapter<String>(this, R.layout.support_simple_spinner_dropdown_item, filter);
         SFilter.setAdapter(adp);
@@ -88,7 +81,6 @@ public class ActivityFilteringSorting extends AppCompatActivity implements Adapt
     public void approval(View view) {
 
         if(posSf==2){
-            count++;
 
         }
     }
@@ -111,15 +103,12 @@ public class ActivityFilteringSorting extends AppCompatActivity implements Adapt
                 SNames.setAdapter(null);
                 Toast.makeText(this, "please enter all the", Toast.LENGTH_SHORT).show();
             }
-            //else {
-             //   CustomAdapter customadp = new CustomAdapter(getApplicationContext(),
-               //     names, subjects, reva, gardes);
-               // lv.setAdapter(customadp);
                 /**
                  * if student chosen- gives a spinner with the all names to choose one.
                  */
             if (position == 1) {
 
+                    Esubject.setText("");
                     db = hlp.getWritableDatabase();
                     tbl = new ArrayList<>();
                     tbl.add("בחר תלמיד");
@@ -159,6 +148,8 @@ public class ActivityFilteringSorting extends AppCompatActivity implements Adapt
                  */
                 else if (position == 3) {
 
+                Esubject.setText("");
+
                     SNames.setOnItemSelectedListener(this);
                     adp = new ArrayAdapter<String>(this, R.layout.support_simple_spinner_dropdown_item, revaim);
                     SNames.setAdapter(adp);
@@ -169,11 +160,6 @@ public class ActivityFilteringSorting extends AppCompatActivity implements Adapt
             posSs=position;
 
             if (position == 0)  Toast.makeText(this, "please enter all the", Toast.LENGTH_SHORT).show();
-            //else{
-              //  CustomAdapter customadp = new CustomAdapter(getApplicationContext(),
-              //          names, subjects, reva, gardes);
-              //  lv.setAdapter(customadp);
-            //}
         }
     }
 

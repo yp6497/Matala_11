@@ -21,7 +21,8 @@ import android.widget.Toast;
  * The type Main activity.
  * @author Yulia Piavka <yp6497@bs.amalnet.k12.il>
  * @version 1.1
- * @since 12 /1/2021 short description-
+ * @since 12 /1/2021
+ * short description- Entering student data.
  */
 public class MainActivity extends AppCompatActivity {
 
@@ -64,12 +65,12 @@ public class MainActivity extends AppCompatActivity {
      */
     public void aprrov(View view) {
 
-        /*
-        if(parentP1E==null || parentName1E==null || addressE==null || nameE==null || studentPE==null )
+
+        if (parentP1E == null || parentName1E == null || addressE == null || nameE == null || studentPE == null)
             Toast.makeText(this, "please enter all the", Toast.LENGTH_SHORT).show();
 
-        else{
-         */
+        else {
+
             name = nameE.getText().toString();
             studentP = studentPE.getText().toString();
             parentName1 = parentName1E.getText().toString();
@@ -103,7 +104,7 @@ public class MainActivity extends AppCompatActivity {
             addressE.setText("");
             homePE.setText("");
         }
-    //}
+    }
 
     /**
      * description- if switch is on= active, else= not active and puts the value in s.

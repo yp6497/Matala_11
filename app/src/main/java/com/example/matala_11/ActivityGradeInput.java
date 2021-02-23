@@ -27,7 +27,7 @@ import static com.example.matala_11.Users.TABLE_USERS;
  * @author Yulia Piavka <yp6497@bs.amalnet.k12.il>
  * @version 1.1
  * @since 12/1/2020
- * short description-
+ * short description- Entering grades for the student
  */
 public class ActivityGradeInput extends AppCompatActivity implements AdapterView.OnItemSelectedListener {
 
@@ -36,10 +36,8 @@ public class ActivityGradeInput extends AppCompatActivity implements AdapterView
     HelperDB hlp;
     Cursor crsr;
 
-    //ArrayList<String> subjects = new ArrayList<>();
-    ArrayList<String> tbl = new ArrayList<>();
+    ArrayList<String> tbl = new ArrayList<>(); //students names
     ArrayAdapter adp;
-    ArrayList<Integer> Kil = new ArrayList<Integer>();
     Spinner Sr,Sname;
     String subject, grade, reva;
     EditText edSubject, /**
@@ -48,8 +46,7 @@ public class ActivityGradeInput extends AppCompatActivity implements AdapterView
     edGrade; /**
      * The grade.
      */
-    int count=0,kid,pos,nameid;
-    String[] namess=null;
+    int pos,nameid;
     String [] revaim= {"רבע ראשון","רבע שני","רבע שלישי","רבע רביעי"};
 
     @Override
@@ -66,8 +63,6 @@ public class ActivityGradeInput extends AppCompatActivity implements AdapterView
         db = hlp.getWritableDatabase();
         db.close();
 
-        //Sname.setOnItemSelectedListener(this);
-        //tbl.add("בחר תלמיד");
         subject = edSubject.getText().toString();
         grade = edGrade.getText().toString();
 
@@ -82,7 +77,6 @@ public class ActivityGradeInput extends AppCompatActivity implements AdapterView
 
         crsr.moveToFirst();
         while (!crsr.isAfterLast()) {
-            //int key = crsr.getInt(col1);
             String name = crsr.getString(col2);
             int activ = crsr.getInt(col10);
             if (activ == 0) {
@@ -94,15 +88,13 @@ public class ActivityGradeInput extends AppCompatActivity implements AdapterView
         crsr.close();
         db.close();
 
-            //namess=new String[count];
-            //=tbl;
-            Sname.setOnItemSelectedListener(this);
-            adp = new ArrayAdapter<String>(this, R.layout.support_simple_spinner_dropdown_item, tbl);
-            Sname.setAdapter(adp);
+        Sname.setOnItemSelectedListener(this);
+        adp = new ArrayAdapter<String>(this, R.layout.support_simple_spinner_dropdown_item, tbl);
+        Sname.setAdapter(adp);
 
-            Sr.setOnItemSelectedListener(this);
-            ArrayAdapter<String> adp = new ArrayAdapter<String>(this, R.layout.support_simple_spinner_dropdown_item, revaim);
-            Sr.setAdapter(adp);
+        Sr.setOnItemSelectedListener(this);
+        ArrayAdapter<String> adp = new ArrayAdapter<String>(this, R.layout.support_simple_spinner_dropdown_item, revaim);
+        Sr.setAdapter(adp);
 
     }
 
@@ -146,9 +138,6 @@ public class ActivityGradeInput extends AppCompatActivity implements AdapterView
         Spinner spinner = (Spinner) parent;
         if (spinner.getId() == R.id.Sname){
             pos=position;
-            //idS = position;
-            //=position;
-            //name = namess[position];
         }
 
         else if (spinner.getId() == R.id.Sr) {
@@ -204,7 +193,5 @@ public class ActivityGradeInput extends AppCompatActivity implements AdapterView
         }
         return true;
     }
-
-
 }
 
